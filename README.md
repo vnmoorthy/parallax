@@ -25,6 +25,7 @@ Parallax is a multi-agent data-analysis swarm. Give it a dataset and a question;
 </p>
 
 <p>
+<a href="https://github.com/vnmoorthy/parallax/releases/download/v0.1.0/Parallax-demo.mp4"><strong>▶ 3-minute demo video</strong></a> ·
 <a href="https://vnmoorthy.github.io/parallax/"><strong>Product site</strong></a> ·
 <a href="docs/SPEC.md"><strong>Docs</strong></a> ·
 <a href="docs/ARCHITECTURE.md"><strong>Architecture</strong></a> ·
