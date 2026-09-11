@@ -24,7 +24,7 @@ Ten slides, 16:9, dark theme matching the product. Built for the Data & AI Hacka
 | 1 | Parallax · Many agents. Many branches. One answer. | Wordmark, fork art, event line, presenter, repo |
 | 2 | One analyst. One query. One hypothesis at a time. | The demo question as eight serial questions; three pains |
 | 3 | Fork the database per hypothesis. | Root → forks → report → memory strip; Fork / Explore / Synthesize / Remember |
-| 4 | Mission Control: watch the swarm run. | Annotated screenshot: metrics strip, lineage tree, agent cards, cited report |
+| 4 | Mission Control: watch the swarm run. | Annotated `mission-control-saas.png` (real 5-agent Ollama run): metrics strip, lineage tree, agent cards, cited report |
 | 5 | Every cloud piece has a zero-key local twin. | Architecture diagram; SSE UI, DataEngine, LLM router, Memory |
 | 6 | Many agents, many forks, no contention. | Hotdata: fork tree with SQL / BM25 / VECTOR / MIXED branches; burst 100 reads → p50 15 ms, p95 30 ms, 50 in-flight |
 | 7 | The analyst is a pipeline. Nothing to host. | RocketRide: `parallax-analyst.pipe` node graph; `parallax-llm.pipe`; Cloud URI |
@@ -44,6 +44,8 @@ node prep_assets.js   # crops brand art + screenshots from ../docs/assets into g
 node build.js         # writes ../Parallax.pptx
 ```
 
-Thumbnails: `soffice --headless --convert-to pdf Parallax.pptx && pdftoppm -png -r 150 Parallax.pdf thumbnails/slide`.
+Thumbnails: `soffice --headless --convert-to pdf Parallax.pptx && pdftoppm -png -r 150 Parallax.pdf thumbnails/slide` (1500 × 844 px each).
+
+Word budget: every content slide (2–9) carries at most 30 words besides its title; slides 1 and 10 are the only text-heavier ones by design.
 
 Source imagery lives in `../docs/assets/` (`banner.svg`, `architecture.png`, `screenshots/*.png`); edit those, re-run the two scripts, and the deck follows.

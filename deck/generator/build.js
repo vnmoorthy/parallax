@@ -122,7 +122,7 @@ function codeChip(slide, x, y, str, w) {
 }
 function bigStat(slide, x, y, w, h, value, label, color, o = {}) {
   card(slide, x, y, w, h);
-  text(slide, value, { x: x + 0.15, y: y + 0.12, w: w - 0.3, h: h * 0.58, fontSize: o.fs || 30, bold: true, color, valign: 'middle' });
+  text(slide, value, { x: x + 0.15, y: y + 0.12, w: w - 0.3, h: h * 0.58, fontSize: o.fs || 30, bold: true, color, valign: 'middle', wrap: false });
   text(slide, label, { x: x + 0.15, y: y + h - 0.42, w: w - 0.3, h: 0.34, fontSize: 9, color: C.MUTED, valign: 'top' });
 }
 
@@ -238,7 +238,7 @@ function bigStat(slide, x, y, w, h, value, label, color, o = {}) {
     const s = pres.addSlide();
     header(s, '03 · LIVE DEMO', 'Mission Control: watch the swarm run.', 4);
     const ix = 0.5, iy = 1.15, iw = 6.24, ih = 3.9, kx = iw / 1600, ky = ih / 1000;
-    s.addImage({ path: SHOT('mission-control-fake-run.png'), x: ix, y: iy, w: iw, h: ih });
+    s.addImage({ path: SHOT('mission-control-saas.png'), x: ix, y: iy, w: iw, h: ih });
     outline(s, ix, iy, iw, ih, C.BORDER, { lw: 0.75 });
     const R = (px0, py0, px1, py1) => [ix + px0 * kx, iy + py0 * ky, (px1 - px0) * kx, (py1 - py0) * ky];
     const regions = [
@@ -259,7 +259,7 @@ function bigStat(slide, x, y, w, h, value, label, color, o = {}) {
       text(s, g.title, { x: 7.45, y: y, w: 2.05, h: 0.3, fontSize: 12.5, bold: true });
       text(s, g.sub, { x: 7.45, y: y + 0.3, w: 2.05, h: 0.5, fontSize: 9.5, color: C.MUTED });
     }
-    text(s, 'zero-key run, 4 agents', { x: 6.95, y: 4.78, w: 2.55, h: 0.26, fontSize: 9, color: C.DIM });
+    text(s, 'local run: 5 agents, Ollama', { x: 6.95, y: 4.78, w: 2.55, h: 0.26, fontSize: 9, color: C.DIM });
     s.addNotes('Switch to the live app here. Status stepper provision -> plan -> explore -> synthesize -> done. Metrics strip: databases, forks, queries, peak concurrency, p50/p95, LLM calls by provider, time to first finding. Lineage tree on the left is the lineage API response, one node per real fork. Agent cards in the middle: think, SQL / BM25 / vector, observe, up to four steps, then a finding with a confidence score. Report on the right with [branch:id] chips that highlight the branch that produced the claim.');
   }
 
@@ -395,7 +395,7 @@ function bigStat(slide, x, y, w, h, value, label, color, o = {}) {
     const s = pres.addSlide();
     header(s, '08 · REAL SCALE · MEASURED IN LOCAL RUNS TODAY', 'Measured, not claimed.', 9);
     const tiles = [
-      ['15 ms', 'p50 · burst', C.CYAN, 30], ['30 ms', 'p95 · burst', C.CYAN, 30], ['110', 'queries · 4 agents', C.TEXT, 30],
+      ['15 ms', 'p50 · burst', C.CYAN, 24], ['30 ms', 'p95 · burst', C.CYAN, 24], ['110', 'queries · 4 agents', C.TEXT, 30],
       ['1.2 s', 'first finding', C.CYAN, 30], ['65', 'tests passing', C.TEXT, 30], ['6,102', 'real Airbnb listings', C.TEXT, 30],
     ];
     for (let i = 0; i < 6; i++) {
