@@ -187,8 +187,10 @@ footer a:hover{color:var(--tx);border-color:var(--a2)}
 
 /* motion */
 @media(prefers-reduced-motion:no-preference){
-  .rv.pre{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-  .rv.in{opacity:1;transform:none}
+  @keyframes rv-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .rv{animation:rv-up .6s cubic-bezier(.22,1,.36,1) both}
+  .rv.pre,.rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{animation:none}}
   .eyebrow i{animation:pulse 2.2s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
 }
