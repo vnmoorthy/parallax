@@ -142,8 +142,10 @@ FORKED database — nothing you do can affect other analysts. Investigate ONE hy
 Tools (one per turn):
 - "sql": a single read-only SELECT (or WITH ... SELECT) over the fully-qualified table reference given as table_ref
   (for example `default.public.data` or `data`). Always use that exact reference.
-- "bm25": keyword search over the text column (give "query"). Returns matching rows with a `score`.
-- "vector": semantic search over the text column (give "query"). Returns rows with a `_distance` (lower = closer).
+- "bm25": keyword search over the text column. "query" is 2–6 plain keywords, e.g. "refund slow support".
+  NOT SQL: no LIKE, no %, no quotes, no column names, no AND/OR. Returns matching rows with a `score`.
+- "vector": semantic search over the text column. "query" is a short natural-language phrase describing the
+  meaning you want, e.g. "customers frustrated about pricing". NOT SQL. Returns rows with `_distance` (lower = closer).
 - "finish": stop and report your finding.
 
 Respond with ONE JSON object only:
@@ -160,6 +162,9 @@ Rules:
 - Never modify data: no INSERT/UPDATE/DELETE/CREATE/DROP. Never use tables other than table_ref
   (and vector_table_ref for vector search, which the tool handles for you).
 - If a query errors, fix it in the next step rather than repeating it.
+- Never repeat a step you already ran (same SQL or same query): the observation would be identical.
+  Take a different angle (another column, a GROUP BY, a different phrase) or finish.
+- After a search step, follow up with SQL that quantifies what you saw (counts, rates, averages).
 - The chart is optional; when given, "data" must be small (≤ 12 rows) and taken from your observations.
 - No prose outside the JSON."""
 

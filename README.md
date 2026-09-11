@@ -25,7 +25,7 @@ Parallax is a multi-agent data-analysis swarm. Give it a dataset and a question;
 </p>
 
 <p>
-<a href="#quickstart"><strong>Live demo</strong></a> ·
+<a href="https://vnmoorthy.github.io/parallax/"><strong>Product site</strong></a> ·
 <a href="docs/SPEC.md"><strong>Docs</strong></a> ·
 <a href="docs/ARCHITECTURE.md"><strong>Architecture</strong></a> ·
 <a href="docs/DEMO.md"><strong>Demo script</strong></a> ·
@@ -70,7 +70,20 @@ flowchart LR
 
 Mission Control during a run: status stepper and live metrics on top, the lineage tree of real database forks on the left, one card per agent with its SQL, step timeline and confidence in the middle, and the cited report on the right.
 
-<img src="docs/assets/mission-control.svg" alt="Parallax Mission Control: metrics strip, lineage tree, agent cards, cited report" width="100%">
+<img src="docs/assets/screenshots/mission-control.png" alt="Parallax Mission Control (real screenshot): metrics strip, lineage tree, agent cards, cited report" width="100%">
+
+<table>
+<tr>
+<td width="33%"><img src="docs/assets/screenshots/launch.png" alt="Launch: pick a dataset, ask a question, choose agent count"></td>
+<td width="33%"><img src="docs/assets/screenshots/memory.png" alt="Memory: what Parallax remembered across runs (Cognee)"></td>
+<td width="33%"><img src="docs/assets/screenshots/settings.png" alt="Connections: live status of Hotdata, RocketRide, Cognee and the LLM chain"></td>
+</tr>
+<tr>
+<td align="center"><sub>Launch</sub></td>
+<td align="center"><sub>Memory</sub></td>
+<td align="center"><sub>Connections</sub></td>
+</tr>
+</table>
 
 The three-minute walkthrough with exact clicks is in [`docs/DEMO.md`](docs/DEMO.md).
 

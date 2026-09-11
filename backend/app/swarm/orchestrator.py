@@ -100,6 +100,33 @@ def slugify(text: str, max_len: int = 24) -> str:
     s = re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
     return (s[:max_len].rstrip("-")) or "hyp"
 
+_SQLISH = re.compile(r"\b(select|from|where|like|ilike|and|or|not|in|is|null|order|by|limit|group)\b", re.I)
+
+
+def clean_search_query(q: str, text_column: str | None = None) -> str:
+    """Turn an LLM 'query' into plain keywords: strips SQL noise (LIKE/%/quotes/column names) if present."""
+    q = (q or "").strip()
+    if not q:
+        return q
+    looks_sql = bool(_SQLISH.search(q)) or "%" in q or q.count("'") >= 2
+    if not looks_sql:
+        return q[:200]
+    tokens = re.findall(r"[A-Za-z][A-Za-z0-9_\-]{1,}", q)
+    stop = {"select", "from", "where", "like", "ilike", "and", "or", "not", "in", "is", "null", "order", "by", "limit",
+            "group", "the", "a", "an", "of", "to", "with", "text", "column"}
+    if text_column:
+        stop.add(text_column.lower())
+    words = [t for t in tokens if t.lower() not in stop]
+    seen: set[str] = set()
+    out: list[str] = []
+    for w in words:
+        lw = w.lower()
+        if lw not in seen:
+            seen.add(lw)
+            out.append(w)
+    return " ".join(out[:8]) or q[:200]
+
+
 def sample_csv(csv_text: str, cap: int) -> tuple[str, int | None]:
     """Return (csv, rows_kept). Keeps the header and a stride sample of at most `cap` rows (all rows if fewer)."""
     import csv
@@ -679,6 +706,7 @@ class Orchestrator:
         vec_ref = self.engine.table_ref(db.id, "data_vec") if ctx.text_column else None
         transcript: list[str] = []
         supporting_sql: list[str] = []
+        seen_steps: set[tuple[str, str]] = set()
         last_result: QueryResult | None = None
         steps_used = 0
         while True:
@@ -705,6 +733,21 @@ class Orchestrator:
             if action == "finish" or remaining <= 0 or (raw_finding is not None and action not in ("sql", "bm25", "vector")):
                 return self._build_finding(raw_finding, last_result, supporting_sql, hyp)
 
+            payload_key: tuple[str, str] | None = None
+            if action == "sql":
+                payload_key = ("sql", " ".join(str(data.get("sql") or "").lower().split()))
+            elif action in ("bm25", "vector"):
+                _q0 = str(data.get("query") or data.get("q") or data.get("text") or "")
+                payload_key = (action, " ".join(clean_search_query(_q0, ctx.text_column).lower().split()))
+            if payload_key is not None and payload_key[1] and payload_key in seen_steps:
+                steps_used += 1
+                observation = ("error: you already ran this exact step; the observation would be identical. "
+                               "Take a different angle (another column, a GROUP BY, a different phrase) or finish now.")
+                self._add_step(ctx, branch, "observe", observation, provider=provider)
+                transcript.append(f"Step {steps_used} [{action}] (duplicate)\nObservation: {observation}")
+                continue
+            if payload_key is not None and payload_key[1]:
+                seen_steps.add(payload_key)
             steps_used += 1
             if action == "sql":
                 sql_raw = str(data.get("sql") or "").strip()
@@ -730,7 +773,7 @@ class Orchestrator:
                                        elapsed_ms=result.elapsed_ms, provider=provider)
                 transcript.append(f"Step {steps_used} [sql]: {sql_raw or '(empty)'}\nObservation: {observation}")
             elif action in ("bm25", "vector"):
-                q = str(data.get("query") or data.get("q") or data.get("text") or "").strip()
+                q = clean_search_query(str(data.get("query") or data.get("q") or data.get("text") or ""), ctx.text_column)
                 if not q:
                     observation = "error: missing \"query\" for search"
                     self._add_step(ctx, branch, "observe", observation, provider=provider)
