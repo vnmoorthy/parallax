@@ -125,3 +125,9 @@ select option { background: var(--surface-2); color: var(--text); }
   .pulse-ring, .skeleton, .float, .progress-indeterminate { animation: none !important; }
   * { scroll-behavior: auto !important; }
 }
+
+/* deterministic entrance reveal (CSS, not rAF-dependent) */
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.reveal { animation: fade-up .55s cubic-bezier(.22, 1, .36, 1) both; }
+.reveal-1 { animation-delay: .05s } .reveal-2 { animation-delay: .16s } .reveal-3 { animation-delay: .27s }
+@media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }

@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { AlertTriangle, Brain, GitFork, RefreshCw, Users } from "lucide-react";
 import { toast } from "sonner";
 import { api } from "@/lib/api";
@@ -15,11 +14,6 @@ import { DatasetPreviewDrawer } from "@/components/DatasetPreviewDrawer";
 import { UploadDropzone } from "@/components/UploadDropzone";
 import { LaunchForm } from "@/components/LaunchForm";
 
-const container: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } } };
-const item: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-};
 
 function SectionHeading({ index, title, description, right }: { index: string; title: string; description?: string; right?: React.ReactNode }) {
   return (
@@ -53,7 +47,6 @@ function DatasetSkeleton() {
 }
 
 export default function LaunchPage() {
-  const reduce = useReducedMotion();
   const [datasets, setDatasets] = React.useState<Dataset[] | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -95,9 +88,9 @@ export default function LaunchPage() {
   const closePreview = React.useCallback(() => setPreviewOpen(false), []);
 
   return (
-    <motion.div variants={reduce ? undefined : container} initial="hidden" animate="show" className="space-y-14">
+    <div className="space-y-14">
       {/* Hero */}
-      <motion.section variants={item} className="relative overflow-hidden pt-6 sm:pt-10" aria-labelledby="hero-title">
+      <section className="reveal reveal-1 relative overflow-hidden pt-6 sm:pt-10" aria-labelledby="hero-title">
         <div className="grid-fade pointer-events-none absolute inset-x-0 -top-10 h-[420px]" aria-hidden />
         <div className="float pointer-events-none absolute -left-24 top-0 size-72 rounded-full bg-accent/20 blur-[100px]" aria-hidden />
         <div className="float pointer-events-none absolute right-0 top-10 size-64 rounded-full bg-accent-2/15 blur-[100px] [animation-delay:-3s]" aria-hidden />
@@ -118,10 +111,10 @@ export default function LaunchPage() {
           <StatTile label="Isolated database forks" value="1 per hypothesis" hint="copy-on-write branches of your data" icon={<GitFork />} tone="cyan" />
           <StatTile label="Memory" value="persists across runs" hint="recalled before every plan" icon={<Brain />} tone="success" />
         </div>
-      </motion.section>
+      </section>
 
       {/* 1 · Dataset */}
-      <motion.section variants={item} aria-labelledby="choose-dataset">
+      <section className="reveal reveal-2" aria-labelledby="choose-dataset">
         <SectionHeading
           index="1"
           title="Choose a dataset"
@@ -149,13 +142,13 @@ export default function LaunchPage() {
             <UploadDropzone onUploaded={onUploaded} />
           </div>
         )}
-      </motion.section>
+      </section>
 
       {/* 2 · Question */}
-      <motion.section variants={item} aria-labelledby="ask-question">
+      <section className="reveal reveal-3" aria-labelledby="ask-question">
         <SectionHeading index="2" title="Ask a question" description="The planner turns it into N diverse hypotheses; each agent gets its own forked database." />
         <LaunchForm dataset={selected} />
-      </motion.section>
+      </section>
 
       <DatasetPreviewDrawer
         dataset={previewDs}
@@ -164,6 +157,6 @@ export default function LaunchPage() {
         selected={!!previewDs && previewDs.id === selectedId}
         onSelect={(d) => { setSelectedId(d.id); setPreviewOpen(false); toast.success(`Selected ${d.name}`); }}
       />
-    </motion.div>
+    </div>
   );
 }
