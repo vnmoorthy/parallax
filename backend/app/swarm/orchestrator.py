@@ -751,7 +751,7 @@ class Orchestrator:
                 seen_steps.add(payload_key)
             steps_used += 1
             if action == "sql":
-                sql_raw = str(data.get("sql") or "").strip()
+                sql_raw = str(data.get("sql") or data.get("query") or "").strip()
                 safe, err = guard_sql(sql_raw, max_limit=AGENT_ROW_LIMIT)
                 if err or safe is None:
                     observation = f"error: {err}"
@@ -775,6 +775,8 @@ class Orchestrator:
                 transcript.append(f"Step {steps_used} [sql]: {sql_raw or '(empty)'}\nObservation: {observation}")
             elif action in ("bm25", "vector"):
                 q = clean_search_query(str(data.get("query") or data.get("q") or data.get("text") or ""), ctx.text_column)
+                if not q:  # small models sometimes omit "query": fall back to their own reasoning / the hypothesis
+                    q = clean_search_query(thought or hyp.title, ctx.text_column)
                 if not q:
                     observation = "error: missing \"query\" for search"
                     self._add_step(ctx, branch, "observe", observation, provider=provider)
