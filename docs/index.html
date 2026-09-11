@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parallax — Many agents. Many branches. One answer.</title>
+<meta name="description" content="Parallax is a multi-agent data-analysis swarm. It forks an isolated Hotdata database per hypothesis, runs analyst agents concurrently (SQL + BM25 + vector search), synthesizes one cited report, and remembers what it learned in Cognee.">
+<meta name="theme-color" content="#07090f">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://vnmoorthy.github.io/parallax/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Parallax">
+<meta property="og:title" content="Parallax — Many agents. Many branches. One answer.">
+<meta property="og:description" content="A multi-agent data-analysis swarm: one forked Hotdata database per hypothesis, concurrent analyst agents, one cited report, memory in Cognee. Built at the Data &amp; AI Hackathon, San Francisco.">
+<meta property="og:url" content="https://vnmoorthy.github.io/parallax/">
+<meta property="og:image" content="https://vnmoorthy.github.io/parallax/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Parallax — many agents, many branches, one answer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Parallax — Many agents. Many branches. One answer.">
+<meta name="twitter:description" content="A multi-agent data-analysis swarm: one forked Hotdata database per hypothesis, concurrent analyst agents, one cited report, memory in Cognee.">
+<meta name="twitter:image" content="https://vnmoorthy.github.io/parallax/assets/social-preview.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M16 32h12M28 32c6 0 6-12 12-12h8M28 32c6 0 6 12 12 12h8M28 32h20' stroke='white' stroke-width='4.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090f;--s1:#0e1220;--s2:#141a2c;--bd:rgba(255,255,255,.08);--bd2:rgba(255,255,255,.14);--tx:#e6e9f2;--mu:#9aa3b8;--a1:#6366f1;--a2:#22d3ee;--ok:#34d399;--wn:#fbbf24;--grad:linear-gradient(135deg,#6366f1,#22d3ee);--sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;--r:14px;--max:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+code,pre,kbd{font-family:var(--mono)}
+:focus-visible{outline:2px solid var(--a2);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--a1);color:#fff;padding:8px 14px;border-radius:8px;z-index:100;text-decoration:none;font-weight:600}
+.skip:focus{left:12px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(7,9,15,.74);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:62px;position:relative}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;text-decoration:none;letter-spacing:-.01em}
+.logo{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 6px 18px -8px rgba(99,102,241,.9)}
+.links{display:flex;gap:2px;margin-left:auto}
+.links a{display:block;padding:8px 12px;border-radius:9px;color:var(--mu);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .15s,background .15s}
+.links a:hover{color:var(--tx);background:rgba(255,255,255,.05)}
+.burger{display:none;margin-left:auto;width:40px;height:40px;border:1px solid var(--bd2);border-radius:10px;background:var(--s2);color:var(--tx);place-items:center;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:11px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--bd2);color:var(--tx);background:var(--s2);transition:transform .15s,background .15s,border-color .15s,filter .15s;white-space:nowrap}
+.btn:hover{background:#1a2238;border-color:rgba(255,255,255,.24)}
+.btn-p{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 10px 30px -10px rgba(99,102,241,.75)}
+.btn-p:hover{filter:brightness(1.08);background:var(--grad)}
+.btn-s{padding:8px 14px;font-size:14px;border-radius:9px}
+@media(max-width:840px){
+  .links{display:none;position:absolute;top:62px;left:0;right:0;flex-direction:column;gap:2px;background:#0b0f1a;border-bottom:1px solid var(--bd);padding:10px 14px 14px;margin:0}
+  .links a{padding:11px 12px;font-size:16px}
+  .nav.open .links{display:flex}
+  .burger{display:grid}
+  .nav .gh{display:none}
+}
+
+/* hero */
+.hero{position:relative;padding:84px 0 0;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 45% at 50% -5%,rgba(99,102,241,.28),transparent 70%),radial-gradient(35% 35% at 85% 15%,rgba(34,211,238,.10),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0 0 40%;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse 65% 70% at 50% 0%,#000 20%,transparent 100%);mask-image:radial-gradient(ellipse 65% 70% at 50% 0%,#000 20%,transparent 100%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 10px;border-radius:999px;border:1px solid rgba(99,102,241,.35);background:rgba(99,102,241,.10);color:#c7d2fe;font-size:13px;font-weight:500;letter-spacing:.01em}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--a2);box-shadow:0 0 12px var(--a2)}
+h1{margin:26px auto 0;font-size:clamp(42px,7.4vw,84px);line-height:1.02;letter-spacing:-.04em;font-weight:800;max-width:14ch}
+h1 span{display:block}
+.g{background:linear-gradient(110deg,#a5b4fc 0%,#818cf8 35%,#22d3ee 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{max-width:760px;margin:26px auto 0;color:var(--mu);font-size:clamp(16px,2vw,19px);line-height:1.65}
+.sub a{color:var(--tx);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+.sub a:hover{border-color:var(--a2)}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+
+.frame{position:relative;max-width:1040px;margin:64px auto 0}
+.frame::before{content:"";position:absolute;left:5%;right:5%;top:-4%;height:70%;background:radial-gradient(50% 60% at 50% 40%,rgba(99,102,241,.45),rgba(34,211,238,.18) 55%,transparent 80%);filter:blur(46px);pointer-events:none}
+.win{position:relative;border:1px solid var(--bd2);border-radius:16px;background:var(--s1);overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(0,0,0,.5)}
+.bar{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--bd);background:#0b0f1a}
+.dot{width:10px;height:10px;border-radius:50%;background:#2a3147}
+.url{margin:0 auto;font:12px/1 var(--mono);color:var(--mu);background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:7px;padding:6px 44px;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.win img{width:100%;height:auto;aspect-ratio:16/10}
+.frame-sm .bar{padding:8px 12px}
+.frame-sm .dot{width:8px;height:8px}
+.frame-sm .url{padding:4px 20px;font-size:11px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-top:64px;text-align:left}
+.stat{background:var(--s1);padding:24px 24px 22px}
+.stat b{display:block;font-size:36px;font-weight:700;letter-spacing:-.035em;line-height:1.05;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat b small{font-size:.5em;font-weight:600;letter-spacing:0}
+.stat .l{font-weight:600;font-size:14.5px;margin-top:6px}
+.stat .d{color:var(--mu);font-size:13px;margin-top:4px;line-height:1.5}
+@media(max-width:900px){.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.stats{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding:96px 0 0}
+.sec:last-of-type{padding-bottom:96px}
+.kicker{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--a2)}
+h2{font-size:clamp(28px,4.2vw,44px);line-height:1.1;letter-spacing:-.03em;margin-top:10px;font-weight:800}
+.lead{color:var(--mu);font-size:17px;max-width:680px;margin-top:14px}
+.head{margin-bottom:40px}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{position:relative;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--bd2);transform:translateY(-2px)}
+.ico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#a5b4fc}
+.card .n{position:absolute;top:22px;right:22px;font:500 12px var(--mono);color:var(--mu)}
+.card h3{font-size:18px;margin-top:18px}
+.card p{color:var(--mu);font-size:14.5px;margin-top:8px;line-height:1.6}
+.card code{font-size:12.5px;color:#c7d2fe;background:rgba(99,102,241,.12);padding:1px 5px;border-radius:5px}
+@media(max-width:1000px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gal figure{margin:0}
+.gal figcaption{margin-top:14px;font-size:14px;color:var(--mu);line-height:1.55}
+.gal figcaption b{display:block;color:var(--tx);font-weight:600;margin-bottom:2px}
+@media(max-width:900px){.gal{grid-template-columns:1fr}}
+
+/* sponsors */
+.sp{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.spc{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px}
+.spc .top{display:flex;align-items:center;gap:12px}
+.sw{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:15px;color:#07090f}
+.spc h3{font-size:20px;flex:1}
+.spc .top a{font-size:13.5px;color:var(--mu);text-decoration:none;font-family:var(--mono);border-bottom:1px solid transparent}
+.spc .top a:hover{color:var(--tx);border-color:var(--a2)}
+blockquote{margin:0;padding:14px 16px 14px 18px;border-left:3px solid;border-image:var(--grad) 1;background:rgba(255,255,255,.025);border-radius:0 10px 10px 0;font-size:15px;color:#d5dae8;line-height:1.55}
+blockquote small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:6px;font-weight:600}
+.spc ul{display:grid;gap:9px}
+.spc li{position:relative;padding-left:20px;font-size:14.5px;color:var(--mu);line-height:1.55}
+.spc li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:9px;border-radius:50%;background:var(--grad)}
+.spc li code,.arch li code,.tbl code{font-size:12.5px;color:#c7d2fe;background:rgba(99,102,241,.12);padding:1px 5px;border-radius:5px;word-break:break-word}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:4px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 12px var(--mono);color:#cdd5e6;background:#0b0f1a;border:1px solid var(--bd2);padding:5px 10px;border-radius:7px;word-break:break-all}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);flex:none}
+@media(max-width:860px){.sp{grid-template-columns:1fr}}
+
+/* architecture */
+.arch{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.arch .win img{aspect-ratio:16/10}
+.arch ul{display:grid;gap:18px}
+.arch li{position:relative;padding-left:32px;color:var(--mu);font-size:15px;line-height:1.6}
+.arch li b{color:var(--tx);font-weight:600}
+.arch li svg{position:absolute;left:0;top:4px;color:var(--ok)}
+@media(max-width:960px){.arch{grid-template-columns:1fr}}
+
+/* run */
+.run{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start}
+.term{background:#0b0f1a;border:1px solid var(--bd2);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 70px -40px rgba(0,0,0,.9)}
+.term .bar{justify-content:space-between}
+.term .bar span{font:12px var(--mono);color:var(--mu)}
+.term pre{margin:0;padding:22px 22px 24px;font-size:14px;line-height:1.85;overflow-x:auto;color:#dfe4f0}
+.term .p{color:var(--a2);user-select:none}
+.term .c{color:#6b7590}
+.term .k{color:#fbbf24}
+.copy{font:500 12px var(--sans);color:var(--tx);background:var(--s2);border:1px solid var(--bd2);padding:5px 10px;border-radius:7px;cursor:pointer}
+.copy:hover{background:#1a2238}
+.tbl{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+.tbl h3{font-size:16px;padding:16px 20px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
+.tbl h3 i{width:8px;height:8px;border-radius:50%;background:var(--wn);box-shadow:0 0 10px var(--wn)}
+.tbl table{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-weight:600;color:var(--mu);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;border-bottom:1px solid var(--bd)}
+.tbl td{padding:12px 20px;border-bottom:1px solid var(--bd);vertical-align:top;color:var(--mu)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{color:var(--tx);font-weight:600;white-space:nowrap}
+.tbl td code{display:inline-block;margin:1px 0}
+.tbl p{padding:14px 20px 18px;font-size:13.5px;color:var(--mu);line-height:1.55;border-top:1px solid var(--bd)}
+@media(max-width:960px){.run{grid-template-columns:1fr}}
+@media(max-width:560px){.tbl td:first-child{white-space:normal}.tbl th,.tbl td{padding-left:14px;padding-right:14px}}
+
+/* footer */
+footer{border-top:1px solid var(--bd);padding:40px 0 48px;color:var(--mu);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
+footer ul{display:flex;flex-wrap:wrap;gap:6px 20px}
+footer a{color:var(--mu);text-decoration:none;border-bottom:1px solid transparent}
+footer a:hover{color:var(--tx);border-color:var(--a2)}
+
+/* motion */
+@media(prefers-reduced-motion:no-preference){
+  .rv.pre{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+  .eyebrow i{animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card:hover{transform:none}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Parallax home">
+      <span class="logo" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h5M8 12c3 0 3-6 6-6h6M8 12c3 0 3 6 6 6h6M8 12h13"/></svg></span>
+      Parallax
+    </a>
+    <nav aria-label="Primary">
+      <ul class="links" id="links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#run">Run it</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-s gh" href="https://github.com/vnmoorthy/parallax">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="links" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="wrap">
+    <p class="eyebrow"><i aria-hidden="true"></i>Data &amp; AI Hackathon · San Francisco · Sept 11, 2026</p>
+    <h1 id="h1"><span class="g">Many agents.</span><span class="g">Many branches.</span><span>One answer.</span></h1>
+    <p class="sub">Parallax is a multi-agent data-analysis swarm. Give it a dataset and a question; it forks an isolated <a href="https://hotdata.dev">Hotdata</a> database per hypothesis, runs analyst agents concurrently (SQL + BM25 + vector search), synthesizes one cited report, and remembers what it learned in <a href="https://cognee.ai">Cognee</a> so the next investigation starts smarter.</p>
+    <div class="ctas">
+      <a class="btn btn-p" href="https://github.com/vnmoorthy/parallax">View on GitHub</a>
+      <a class="btn" href="#run">Run it in 3 commands <span aria-hidden="true">↓</span></a>
+    </div>
+
+    <div class="frame">
+      <div class="win">
+        <div class="bar" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">localhost:3000/runs/aaf0a66e</span></div>
+        <img src="assets/screenshots/mission-control.png" width="1600" height="1000" alt="Parallax Mission Control during a run: status stepper and live metrics tiles on top, the lineage tree of forked databases on the left, one card per agent with its SQL and finding in the middle, and the cited report on the right." fetchpriority="high">
+      </div>
+    </div>
+
+    <dl class="stats" aria-label="Key numbers">
+      <div class="stat"><dt class="vh">Concurrent queries</dt><dd style="margin:0"><b>100</b><span class="l" style="display:block">concurrent queries</span><span class="d" style="display:block">p50 15 ms · p95 30 ms — burst across 5 forked databases</span></dd></div>
+      <div class="stat"><dt class="vh">Time to first finding</dt><dd style="margin:0"><b>1.2<small> s</small></b><span class="l" style="display:block">time-to-first-finding</span><span class="d" style="display:block">measured from <code style="font-size:12px">started_at</code> to the first <code style="font-size:12px">agent.finding</code></span></dd></div>
+      <div class="stat"><dt class="vh">Agents per run</dt><dd style="margin:0"><b>2–16</b><span class="l" style="display:block">analyst agents per run</span><span class="d" style="display:block">one hypothesis each, one isolated database fork each</span></dd></div>
+      <div class="stat"><dt class="vh">API keys needed for local mode</dt><dd style="margin:0"><b>0</b><span class="l" style="display:block">API keys needed for local mode</span><span class="d" style="display:block">DuckDB forks, fake LLM, local memory — the identical code path</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="kicker">How it works</span>
+      <h2 id="how-h">Fork the database per hypothesis.</h2>
+      <p class="lead">One analyst, one query, one hypothesis at a time is the bottleneck. Eight agents on one shared database trip over each other. Parallax gives every agent its own snapshot, its own indexes, its own scratch tables — and merges what they find.</p>
+    </div>
+    <ol class="cards">
+      <li class="card rv">
+        <span class="n">01</span>
+        <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9M12 12v3"/></svg></span>
+        <h3>Fork</h3>
+        <p>A root Hotdata database is created per run and the dataset loaded. The planner, primed by memory, proposes exactly <em>N</em> hypotheses with diverse strategies, and the root is forked once per hypothesis.</p>
+      </li>
+      <li class="card rv">
+        <span class="n">02</span>
+        <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <h3>Explore concurrently</h3>
+        <p><em>N</em> agents run under <code>asyncio.gather</code>. Each loops think → SQL / BM25 / vector search → observe (up to 4 steps) on its own fork, then commits a finding with a confidence score.</p>
+      </li>
+      <li class="card rv">
+        <span class="n">03</span>
+        <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span>
+        <h3>Synthesize</h3>
+        <p>One report with an executive summary, key findings, next questions and <code>[branch:&lt;id&gt;]</code> citations you can click to jump to the evidence — the fork and the SQL that produced it.</p>
+      </li>
+      <li class="card rv">
+        <span class="n">04</span>
+        <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><circle cx="12" cy="10" r="2.5"/><path d="M7.2 7.2 10 8.8M16.8 7.2 14 8.8M12 12.5v3"/></svg></span>
+        <h3>Remember</h3>
+        <p>The question and findings are written to Cognee with node sets per dataset and per run, in the background, and recalled before the next plan so the next run starts smarter.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="tour" aria-labelledby="tour-h">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="kicker">Product tour</span>
+      <h2 id="tour-h">Every button does something real.</h2>
+      <p class="lead">Live mode badges from <code style="font-size:14px">/api/health</code>, SSE-driven Mission Control, a memory page backed by the Cognee graph, and read-only connection settings — secrets never touch the browser.</p>
+    </div>
+    <div class="gal">
+      <figure class="rv">
+        <div class="win frame-sm"><div class="bar" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">localhost:3000</span></div><img src="assets/screenshots/launch.png" width="1600" height="1000" loading="lazy" alt="Launch page: hero, live mode badges, and dataset cards for SaaS customers, e-commerce orders and SF Airbnb listings."></div>
+        <figcaption><b>Launch</b>Pick a dataset (or drop a CSV), choose a suggested question, set 2–16 agents and launch the swarm.</figcaption>
+      </figure>
+      <figure class="rv">
+        <div class="win frame-sm"><div class="bar" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">localhost:3000/memory</span></div><img src="assets/screenshots/memory.png" width="1600" height="1000" loading="lazy" alt="Memory page: recall search box, stats tiles for memories, tags and backend (Cognee), and a list of recent memories with dataset and run tags."></div>
+        <figcaption><b>Memory</b>What Parallax remembers across runs — recalled before every plan, scoped by dataset and run node sets.</figcaption>
+      </figure>
+      <figure class="rv">
+        <div class="win frame-sm"><div class="bar" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">localhost:3000/settings</span></div><img src="assets/screenshots/settings.png" width="1600" height="1000" loading="lazy" alt="Connections settings page: cards for Hotdata, RocketRide, Cognee and LLM with live status and the environment variable names to set."></div>
+        <figcaption><b>Connections</b>Live status of each subsystem plus a copy-to-clipboard <code style="font-size:12.5px">.env</code> template. Read-only by design.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="sponsors" aria-labelledby="sp-h">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="kicker">Sponsors</span>
+      <h2 id="sp-h">Built on the sponsor stack.</h2>
+      <p class="lead">Each sponsor's stated criterion, verbatim, next to what Parallax actually does with it and where the code lives. Every cloud piece has a zero-key local fallback.</p>
+    </div>
+    <div class="sp">
+      <article class="spc rv">
+        <div class="top"><span class="sw" style="background:#22d3ee" aria-hidden="true">H</span><h3>Hotdata</h3><a href="https://hotdata.dev">hotdata.dev ↗</a></div>
+        <blockquote><small>Prize criterion</small>“Build an application where multiple agents or users need to search, query, or analyze data concurrently.”</blockquote>
+        <ul>
+          <li>One root database per run, <b>forked once per hypothesis</b> via <code>POST /databases/{id}/fork</code>, so <em>N</em> agents query <em>N</em> isolated databases at the same time. The lineage tree in Mission Control is the lineage API response.</li>
+          <li>Search, not just SQL: a BM25 index on <code>data</code> and a provider-backed vector index on a <code>data_vec</code> copy, created lazily per branch because forks do not carry indexes.</li>
+          <li>Burst mode fires 10–200 concurrent reads across the forks and reports p50 / p95 / max; every query's <code>elapsed_ms</code> feeds the live percentiles.</li>
+        </ul>
+        <div class="chips"><code class="chip">backend/app/data/hotdata.py</code></div>
+      </article>
+      <article class="spc rv">
+        <div class="top"><span class="sw" style="background:#6366f1;color:#fff" aria-hidden="true">R</span><h3>RocketRide</h3><a href="https://rocketride.org">rocketride.org ↗</a></div>
+        <blockquote><small>Prize criterion</small>“Build your project on RocketRide Cloud and deploy an AI pipeline without managing any infrastructure.”</blockquote>
+        <ul>
+          <li>Every planner, agent and synthesizer LLM call goes through <code>pipelines/parallax-llm.pipe</code> with the <code>rocketride</code> SDK: <code>use()</code> once with a cached token, <code>chat()</code> per call.</li>
+          <li><code>parallax-analyst.pipe</code> is the deployable analyst: an <code>agent_rocketride</code> node controlling Claude, <code>memory_internal</code>, a <code>db_hotdata</code> tool and a <code>tool_cognee</code> node.</li>
+          <li>Point <code>ROCKETRIDE_URI</code> at <code>https://api.rocketride.ai</code> and it runs on Cloud with nothing to host; per-call fallback rocketride → anthropic → ollama never fails a run.</li>
+        </ul>
+        <div class="chips"><code class="chip">pipelines/parallax-analyst.pipe</code><code class="chip">backend/app/llm/rocketride_llm.py</code></div>
+      </article>
+      <article class="spc rv">
+        <div class="top"><span class="sw" style="background:#34d399" aria-hidden="true">C</span><h3>Cognee</h3><a href="https://cognee.ai">cognee.ai ↗</a></div>
+        <blockquote><small>Prize criterion</small>“Build persistent memory and context for your AI agents.”</blockquote>
+        <ul>
+          <li><code>add</code> → <code>cognify</code> → <code>search</code>: after each run the findings are written in a background task; before each plan they are recalled with <code>GRAPH_COMPLETION</code> and injected into the planner prompt.</li>
+          <li>Node sets per dataset and per run keep memories scoped — recalls for <code>ecommerce_orders</code> never surface SaaS churn facts.</li>
+          <li>The graph is rendered in <code>/memory</code> via <code>cognee.visualize_graph()</code>; Cognee is also a tool for the RocketRide agent, and falls back to <code>LocalMemory</code> with the same protocol.</li>
+        </ul>
+        <div class="chips"><code class="chip">backend/app/memory/cognee_memory.py</code></div>
+      </article>
+      <article class="spc rv">
+        <div class="top"><span class="sw" style="background:#a78bfa" aria-hidden="true">S</span><h3>Snyk</h3><a href="https://snyk.io">snyk.io ↗</a></div>
+        <blockquote><small>What runs in CI</small>“<code>snyk test --all-projects --severity-threshold=high</code> and <code>snyk code test</code> on every push and pull request.”</blockquote>
+        <ul>
+          <li><code>continue-on-error</code>, skipped gracefully when <code>SNYK_TOKEN</code> is absent — a missing token never blocks contributors.</li>
+          <li>The public badge in the README links to the report; <code>make snyk</code> runs the same scans locally.</li>
+          <li><code>SECURITY.md</code> covers disclosure, the read-only SQL guard, per-branch isolation with 24 h expiry, and server-side-only secrets.</li>
+        </ul>
+        <div class="chips"><code class="chip">.github/workflows/ci.yml</code></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="architecture" aria-labelledby="arch-h">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="kicker">Architecture</span>
+      <h2 id="arch-h">Next.js in front, FastAPI in the middle, forks underneath.</h2>
+    </div>
+    <div class="arch">
+      <div class="win rv"><img src="assets/architecture.png" width="1600" height="1000" loading="lazy" alt="Parallax system architecture: Next.js Mission Control talks REST and SSE to a FastAPI orchestrator, which forks Hotdata databases, routes LLM calls through RocketRide pipelines, remembers into Cognee, with Snyk in CI and zero-key local fallbacks for every cloud piece."></div>
+      <ul class="rv">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><b><code>DataEngine</code> abstraction.</b> One protocol — <code>create_database</code>, <code>fork</code>, <code>load_csv</code>, <code>query</code>, <code>bm25_search</code>, <code>vector_search</code>, <code>lineage</code> — with two implementations: <code>HotdataEngine</code> over HTTP and <code>LocalEngine</code> over DuckDB files. The orchestrator never knows which one it has.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><b>Five phases, typed events.</b> provisioning → planning → exploring → synthesizing → remember, emitting an event after every state change. Peak concurrency is measured with an in-flight counter; every query's <code>elapsed_ms</code> feeds p50 / p95.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><b>SSE, not polling.</b> <code>GET /api/runs/{id}/events</code> replays a per-run buffer then streams live, so a refresh or a shared link rebuilds the exact same Mission Control. Runs persist as JSON after every event.</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><b>Fallbacks everywhere.</b> LLM chain rocketride → anthropic → ollama with per-call provider attribution; Hotdata → DuckDB; Cognee → local JSON memory; Ollama embeddings → deterministic hashed embeddings. Zero-key mode runs the identical code path.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="run" aria-labelledby="run-h">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="kicker">Run it</span>
+      <h2 id="run-h">Three commands. No accounts.</h2>
+      <p class="lead">Zero-key mode runs the whole orchestrator, event stream and UI on a laptop with DuckDB forks and a fake LLM. Add keys when you want the cloud.</p>
+    </div>
+    <div class="run">
+      <div class="term rv">
+        <div class="bar"><span>zsh — parallax</span><button class="copy" id="copy" type="button" data-cmd="git clone https://github.com/vnmoorthy/parallax && cd parallax
+make setup
+make demo">Copy</button></div>
+<pre tabindex="0"><code><span class="p">$</span> git clone https://github.com/vnmoorthy/parallax <span class="k">&amp;&amp;</span> cd parallax
+<span class="p">$</span> make setup     <span class="c"># uv sync (backend) + pnpm install (frontend)</span>
+<span class="p">$</span> make demo      <span class="c"># zero keys → http://localhost:3000</span></code></pre>
+      </div>
+      <div class="tbl rv">
+        <h3><i aria-hidden="true"></i>Turn on the cloud</h3>
+        <table>
+          <thead><tr><th scope="col">Service</th><th scope="col">Variables</th></tr></thead>
+          <tbody>
+            <tr><td>Hotdata</td><td><code>HOTDATA_API_KEY</code> + <code>HOTDATA_WORKSPACE_ID</code></td></tr>
+            <tr><td>RocketRide Cloud</td><td><code>ROCKETRIDE_URI</code> + <code>ROCKETRIDE_APIKEY</code></td></tr>
+            <tr><td>Anthropic</td><td><code>ANTHROPIC_API_KEY</code></td></tr>
+            <tr><td>Cognee</td><td><code>ANTHROPIC_API_KEY</code> + Ollama <code>nomic-embed-text</code></td></tr>
+          </tbody>
+        </table>
+        <p>Copy <code>.env.example</code> to <code>.env</code> and fill in any group. Every variable is optional and every subsystem resolves independently; <code>GET /api/health</code> and the badges in the UI show what you ended up with.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Built in 8 hours at the <a href="https://luma.com/qisv9xmg">Data &amp; AI Hackathon</a> · AWS Builder Loft, SF · Sept 11 2026 · <a href="https://github.com/vnmoorthy/parallax/blob/main/LICENSE">MIT</a></p>
+    <ul aria-label="Links">
+      <li><a href="https://hotdata.dev">Hotdata</a></li>
+      <li><a href="https://rocketride.org">RocketRide</a></li>
+      <li><a href="https://cognee.ai">Cognee</a></li>
+      <li><a href="https://snyk.io">Snyk</a></li>
+      <li><a href="https://github.com/vnmoorthy/parallax">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  b.addEventListener('click',function(){var o=nav.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});
+  nav.querySelectorAll('.links a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');b.setAttribute('aria-expanded','false');});});
+  var c=document.getElementById('copy');
+  c.addEventListener('click',function(){
+    var t=c.getAttribute('data-cmd');
+    function done(s){c.textContent=s;setTimeout(function(){c.textContent='Copy';},1600);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){done('Copied');},function(){done('Select & copy');});}
+    else{done('Select & copy');}
+  });
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: no-preference)').matches&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('pre');io.observe(el);});
+  }
+})();
+</script>
+</body>
+</html>

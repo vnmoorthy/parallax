@@ -241,5 +241,5 @@ Findings:
 
 Metrics: databases={m.databases_created}, forks={m.forks}, queries={m.queries}, peak_concurrency={m.peak_concurrency}, p50_ms={m.p50_ms:.1f}, p95_ms={m.p95_ms:.1f}, llm_calls={m.llm_calls}
 
-Write the report JSON now. Cite branches as [branch:<branch_id>]."""
+Write the report JSON now. Cite branches as [branch:<branch_id>]. Keep "markdown" under 350 words: an executive summary paragraph, 3-6 bullet findings with numbers, and 2-3 next questions."""
     return SYNTH_SYSTEM, user

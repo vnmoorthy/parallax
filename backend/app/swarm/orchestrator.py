@@ -39,6 +39,7 @@ from app.swarm.store import RunStore
 log = logging.getLogger("parallax.orchestrator")
 
 MAX_TOOL_STEPS = 4
+SYNTH_MAX_TOKENS = 1800  # a tight, cited report; small local models generate ~5 tok/s
 AGENT_ROW_LIMIT = 50
 OBSERVATION_ROWS = 15
 SEARCH_K = 10
@@ -891,7 +892,7 @@ class Orchestrator:
         findings = self._collected_findings(run)
         system, user = synth_prompts(question=run.question, dataset_name=run.dataset_name, findings=findings,
                                      metrics=run.metrics)
-        data = await self._llm_json(ctx, system, user, max_tokens=3500)
+        data = await self._llm_json(ctx, system, user, max_tokens=SYNTH_MAX_TOKENS)
         run.report = self._build_report(data, run, findings)
         self._emit(ctx, "report.ready", {"report": run.report.model_dump(mode="json")})
 
