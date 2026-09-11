@@ -1,0 +1,82 @@
+name: Bug report
+description: Something in Parallax is broken or behaves differently from docs/SPEC.md
+title: "[bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Security issues should **not** be filed here; see [SECURITY.md](../blob/main/SECURITY.md).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+      placeholder: Launched a run with 8 agents on saas_customers; the lineage tree shows 7 branches but the metrics tile says 8 forks.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1. `make demo` (or `make dev` with the env below)
+        2. Open http://localhost:3000
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      multiple: true
+      options:
+        - Orchestrator / swarm
+        - Hotdata engine
+        - Local (DuckDB) engine
+        - LLM routing (RocketRide / Anthropic / Ollama / fake)
+        - Memory (Cognee / local)
+        - API / SSE
+        - Frontend (Mission Control UI)
+        - Pipelines (.pipe files)
+        - Datasets
+        - CI / tooling / docs
+    validations:
+      required: true
+  - type: textarea
+    id: health
+    attributes:
+      label: Output of `curl -s localhost:8000/api/health`
+      description: This tells us which modes each subsystem resolved to. Please redact nothing; it never contains keys.
+      render: json
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+      placeholder: v0.1.0 or a commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      value: |
+        - OS:
+        - Python (`python --version`):
+        - Node (`node --version`):
+        - PARALLAX_DATA_MODE / PARALLAX_LLM_MODE / PARALLAX_MEMORY_MODE:
+        - Ollama installed? (y/n):
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Backend log lines, browser console, or the `run.error` event payload.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and this is not a duplicate.
+          required: true
+        - label: I can reproduce this in zero-key mode (`make demo`), or I have explained why it needs cloud credentials.

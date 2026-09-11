@@ -1,0 +1,48 @@
+{
+  "datasets": [
+    {
+      "id": "saas_customers",
+      "name": "SaaS customers",
+      "description": "6,000 B2B SaaS accounts with plan, seats, MRR, activity, support load, NPS, churn flag, churn reason and free-text feedback. Synthetic, seeded, deliberately correlated (churn rises with tickets, low NPS, Starter plan, Retail, inactivity).",
+      "file": "saas_customers.csv",
+      "text_columns": [
+        "feedback",
+        "churn_reason"
+      ],
+      "suggested_questions": [
+        "Why are customers churning and where is revenue at risk?",
+        "Which segments have the best expansion potential?",
+        "Does support ticket volume predict churn, and does it differ by plan?"
+      ]
+    },
+    {
+      "id": "ecommerce_orders",
+      "name": "E-commerce orders",
+      "description": "8,000 US online orders across 6 categories and ~42 products with pricing, discounts, shipping time, returns, star rating and review text. Synthetic, seeded, deliberately correlated (returns rise with slow shipping, Apparel, deep discounts and low ratings).",
+      "file": "ecommerce_orders.csv",
+      "text_columns": [
+        "review_text"
+      ],
+      "suggested_questions": [
+        "What drives returns and low ratings?",
+        "Where should we invest marketing next quarter?",
+        "Which products and states have the worst shipping experience?"
+      ]
+    },
+    {
+      "id": "sf_airbnb_listings",
+      "name": "SF Airbnb listings",
+      "description": "Real San Francisco Airbnb listings (hotdata.dev mirror of the Inside Airbnb scrape, 6,102 rows kept from 7,535): name, neighbourhood, room type, minimum nights, reviews, availability, capacity, bedrooms, review score and listing description. The scrape's price column is empty, so `price` is a modelled nightly rate derived from room type, neighbourhood, capacity and rating.",
+      "file": "sf_airbnb_listings.csv",
+      "text_columns": [
+        "description",
+        "name"
+      ],
+      "suggested_questions": [
+        "What makes a listing command a premium price?",
+        "Which neighborhoods are under-supplied for families?",
+        "How do 30-night minimum listings differ from short-stay listings?"
+      ]
+    }
+  ]
+}

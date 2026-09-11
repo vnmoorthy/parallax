@@ -1,0 +1,44 @@
+# Parallax — docker compose (local, single host)
+#   cp .env.example .env   # optional sponsor keys; everything runs in local mode without them
+#   docker compose up --build
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PARALLAX_DATA_DIR: /app/.parallax
+      # inside the compose network, containers reach host services via host.docker.internal
+      OLLAMA_HOST: ${OLLAMA_HOST:-http://host.docker.internal:11434}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./.parallax:/app/.parallax
+      - ./datasets:/app/datasets:ro
+      - ./pipelines:/app/pipelines:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # baked into the Next.js bundle at build time — the browser calls this URL directly
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

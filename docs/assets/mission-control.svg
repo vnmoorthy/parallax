@@ -1,0 +1,477 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title>Parallax Mission Control — stylized view of a live run</title>
+  <defs>
+    <linearGradient id="wm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="vbar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="g-indigo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e6e9f2" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#07090f"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+
+  <!-- ===================== NAV ===================== -->
+  <rect x="0" y="0" width="1600" height="56" fill="#0e1220"/>
+  <line x1="0" y1="56.5" x2="1600" y2="56.5" stroke="#e6e9f2" stroke-opacity="0.08"/>
+  <circle cx="44" cy="28" r="10" fill="url(#wm)"/>
+  <circle cx="44" cy="28" r="3.5" fill="#07090f"/>
+  <text x="62" y="34" font-size="18" font-weight="800" fill="#e6e9f2" letter-spacing="-0.5">Parallax</text>
+  <g font-size="13" fill="#e6e9f2">
+    <text x="190" y="33" fill-opacity="0.6">Launch</text>
+    <text x="256" y="33" fill-opacity="1" font-weight="600">Runs</text>
+    <rect x="256" y="40" width="34" height="2" rx="1" fill="url(#wm)"/>
+    <text x="312" y="33" fill-opacity="0.6">Memory</text>
+    <text x="380" y="33" fill-opacity="0.6">Settings</text>
+  </g>
+  <!-- mode badges -->
+  <g font-size="11.5" font-weight="600">
+    <rect x="1074" y="17" width="112" height="24" rx="12" fill="#22d3ee" fill-opacity="0.1" stroke="#22d3ee" stroke-opacity="0.5"/>
+    <circle cx="1088" cy="29" r="3.5" fill="#22d3ee"/>
+    <text x="1097" y="33" fill="#22d3ee">data · hotdata</text>
+
+    <rect x="1196" y="17" width="124" height="24" rx="12" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.55"/>
+    <circle cx="1210" cy="29" r="3.5" fill="#818cf8"/>
+    <text x="1219" y="33" fill="#a5b4fc">llm · rocketride</text>
+
+    <rect x="1330" y="17" width="126" height="24" rx="12" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-opacity="0.5"/>
+    <circle cx="1344" cy="29" r="3.5" fill="#34d399"/>
+    <text x="1353" y="33" fill="#34d399">memory · cognee</text>
+
+    <rect x="1498" y="17" width="58" height="24" rx="6" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.15"/>
+    <text x="1527" y="33" fill="#e6e9f2" fill-opacity="0.7" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">⌘K</text>
+  </g>
+
+  <!-- ===================== RUN HEADER + STEPPER ===================== -->
+  <text x="40" y="92" font-size="17" font-weight="700" fill="#e6e9f2">Why are customers churning and where is revenue at risk?</text>
+  <text x="40" y="112" font-size="12" fill="#e6e9f2" fill-opacity="0.5">saas_customers · 6,000 rows · 6 agents · run 7f3a2c · exploring</text>
+
+  <g font-size="11" fill="#e6e9f2">
+    <line x1="890" y1="96" x2="980" y2="96" stroke="#34d399" stroke-opacity="0.6" stroke-width="2"/>
+    <line x1="1000" y1="96" x2="1090" y2="96" stroke="#34d399" stroke-opacity="0.6" stroke-width="2"/>
+    <line x1="1110" y1="96" x2="1200" y2="96" stroke="#e6e9f2" stroke-opacity="0.15" stroke-width="2"/>
+    <line x1="1220" y1="96" x2="1310" y2="96" stroke="#e6e9f2" stroke-opacity="0.15" stroke-width="2"/>
+
+    <circle cx="880" cy="96" r="9" fill="#34d399"/>
+    <text x="880" y="100" font-size="10" font-weight="800" fill="#07090f" text-anchor="middle">✓</text>
+    <text x="880" y="121" text-anchor="middle" fill-opacity="0.7">provision</text>
+
+    <circle cx="990" cy="96" r="9" fill="#34d399"/>
+    <text x="990" y="100" font-size="10" font-weight="800" fill="#07090f" text-anchor="middle">✓</text>
+    <text x="990" y="121" text-anchor="middle" fill-opacity="0.7">plan</text>
+
+    <circle cx="1100" cy="96" r="20" fill="url(#g-indigo)"/>
+    <circle cx="1100" cy="96" r="9" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/>
+    <circle cx="1100" cy="96" r="3.5" fill="#818cf8"/>
+    <text x="1100" y="121" text-anchor="middle" fill="#a5b4fc" font-weight="600">explore</text>
+
+    <circle cx="1210" cy="96" r="9" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.25" stroke-width="2"/>
+    <text x="1210" y="121" text-anchor="middle" fill-opacity="0.4">synthesize</text>
+
+    <circle cx="1320" cy="96" r="9" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.25" stroke-width="2"/>
+    <text x="1320" y="121" text-anchor="middle" fill-opacity="0.4">done</text>
+  </g>
+  <rect x="1424" y="80" width="136" height="32" rx="8" fill="#6366f1"/>
+  <text x="1492" y="100" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Burst 100 queries</text>
+
+  <!-- ===================== METRICS STRIP (8 tiles) ===================== -->
+  <g font-size="10.5" fill="#e6e9f2">
+    <rect x="40" y="136" width="179" height="74" rx="12" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="56" y="158" fill-opacity="0.5" letter-spacing="1">DATABASES</text>
+    <text x="56" y="190" font-size="24" font-weight="700">7</text>
+    <text x="80" y="190" font-size="11" fill-opacity="0.45">1 root + 6 forks</text>
+
+    <rect x="231" y="136" width="179" height="74" rx="12" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="247" y="158" fill-opacity="0.5" letter-spacing="1">FORKS</text>
+    <text x="247" y="190" font-size="24" font-weight="700" fill="#22d3ee">6</text>
+    <text x="271" y="190" font-size="11" fill-opacity="0.45">Hotdata · 24h ttl</text>
+
+    <rect x="422" y="136" width="179" height="74" rx="12" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="438" y="158" fill-opacity="0.5" letter-spacing="1">QUERIES</text>
+    <text x="438" y="190" font-size="24" font-weight="700">38</text>
+    <text x="476" y="190" font-size="11" fill-opacity="0.45">sql 31 · bm25 4 · vec 3</text>
+
+    <rect x="613" y="136" width="179" height="74" rx="12" fill="#0e1220" stroke="#22d3ee" stroke-opacity="0.35"/>
+    <text x="629" y="158" fill-opacity="0.5" letter-spacing="1">PEAK CONCURRENCY</text>
+    <text x="629" y="190" font-size="24" font-weight="700" fill="#22d3ee">6</text>
+    <text x="653" y="190" font-size="11" fill-opacity="0.45">in-flight, all branches</text>
+
+    <rect x="804" y="136" width="179" height="74" rx="12" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="820" y="158" fill-opacity="0.5" letter-spacing="1">P50 · P95</text>
+    <text x="820" y="190" font-size="24" font-weight="700" fill="#34d399">41<tspan font-size="12" fill="#e6e9f2" fill-opacity="0.5"> ms</tspan></text>
+    <text x="900" y="190" font-size="15" font-weight="600" fill-opacity="0.75">118<tspan font-size="11" fill-opacity="0.6"> ms</tspan></text>
+
+    <rect x="995" y="136" width="179" height="74" rx="12" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="1011" y="158" fill-opacity="0.5" letter-spacing="1">LLM CALLS</text>
+    <text x="1011" y="190" font-size="24" font-weight="700">15</text>
+    <text x="1047" y="190" font-size="11" fill="#a5b4fc">all via rocketride</text>
+
+    <rect x="1186" y="136" width="179" height="74" rx="12" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="1202" y="158" fill-opacity="0.5" letter-spacing="1">FIRST FINDING</text>
+    <text x="1202" y="190" font-size="24" font-weight="700">6.8<tspan font-size="12" fill-opacity="0.5"> s</tspan></text>
+
+    <rect x="1377" y="136" width="183" height="74" rx="12" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="1393" y="158" fill-opacity="0.5" letter-spacing="1">ELAPSED</text>
+    <text x="1393" y="190" font-size="24" font-weight="700">34.2<tspan font-size="12" fill-opacity="0.5"> s</tspan></text>
+    <circle cx="1540" cy="154" r="4" fill="#818cf8"/>
+  </g>
+
+  <!-- ===================== LEFT: LINEAGE ===================== -->
+  <rect x="40" y="226" width="320" height="744" rx="14" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+  <text x="56" y="252" font-size="13" font-weight="700" fill="#e6e9f2">Lineage</text>
+  <text x="344" y="252" font-size="11" fill="#e6e9f2" fill-opacity="0.45" text-anchor="end">7 databases · Hotdata</text>
+  <line x1="56" y1="264" x2="344" y2="264" stroke="#e6e9f2" stroke-opacity="0.08"/>
+
+  <!-- trunk -->
+  <line x1="96" y1="314" x2="96" y2="760" stroke="#818cf8" stroke-opacity="0.35" stroke-width="2"/>
+  <!-- edges -->
+  <g fill="none" stroke-width="1.6">
+    <path d="M96 324 C96 364 150 370 190 370" stroke="#34d399" stroke-opacity="0.6"/>
+    <path d="M96 408 C96 448 150 454 190 454" stroke="#34d399" stroke-opacity="0.6"/>
+    <path d="M96 492 C96 532 150 538 190 538" stroke="#818cf8" stroke-opacity="0.9"/>
+    <path d="M96 576 C96 616 150 622 190 622" stroke="#34d399" stroke-opacity="0.6"/>
+    <path d="M96 660 C96 700 150 706 190 706" stroke="#34d399" stroke-opacity="0.6"/>
+    <path d="M96 744 C96 784 150 790 190 790" stroke="#818cf8" stroke-opacity="0.9"/>
+  </g>
+  <!-- root -->
+  <circle cx="96" cy="300" r="28" fill="url(#g-indigo)"/>
+  <circle cx="96" cy="300" r="13" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/>
+  <circle cx="96" cy="300" r="5" fill="url(#wm)"/>
+  <text x="118" y="297" font-size="12" font-weight="700" fill="#e6e9f2">root</text>
+  <text x="118" y="312" font-size="10" fill="#e6e9f2" fill-opacity="0.5">parallax-7f3a2c · data · data_vec</text>
+  <!-- branch nodes -->
+  <g>
+    <circle cx="200" cy="370" r="9" fill="#0e1220" stroke="#34d399" stroke-width="2.2"/><circle cx="200" cy="370" r="3.2" fill="#34d399"/>
+    <text x="218" y="374" font-size="12" fill="#e6e9f2" fill-opacity="0.92">b1 · churn by plan tier</text>
+    <text x="218" y="389" font-size="10" fill="#e6e9f2" fill-opacity="0.5">SQL · done · 6q · 0.86</text>
+
+    <circle cx="200" cy="454" r="9" fill="#0e1220" stroke="#34d399" stroke-width="2.2"/><circle cx="200" cy="454" r="3.2" fill="#34d399"/>
+    <text x="218" y="458" font-size="12" fill="#e6e9f2" fill-opacity="0.92">b2 · feedback themes</text>
+    <text x="218" y="473" font-size="10" fill="#e6e9f2" fill-opacity="0.5">BM25 · done · 3q · 0.78</text>
+
+    <circle cx="200" cy="538" r="20" fill="url(#g-indigo)"/>
+    <circle cx="200" cy="538" r="9" fill="#0e1220" stroke="#818cf8" stroke-width="2.2"/><circle cx="200" cy="538" r="3.2" fill="#818cf8"/>
+    <text x="218" y="542" font-size="12" fill="#e6e9f2" fill-opacity="0.92">b3 · onboarding vectors</text>
+    <text x="218" y="557" font-size="10" fill="#a5b4fc">vector · exploring · 3/4</text>
+
+    <circle cx="200" cy="622" r="9" fill="#0e1220" stroke="#34d399" stroke-width="2.2"/><circle cx="200" cy="622" r="3.2" fill="#34d399"/>
+    <text x="218" y="626" font-size="12" fill="#e6e9f2" fill-opacity="0.92">b4 · MRR at risk</text>
+    <text x="218" y="641" font-size="10" fill="#e6e9f2" fill-opacity="0.5">SQL · done · 4q · 0.91</text>
+
+    <circle cx="200" cy="706" r="9" fill="#0e1220" stroke="#34d399" stroke-width="2.2"/><circle cx="200" cy="706" r="3.2" fill="#34d399"/>
+    <text x="218" y="710" font-size="12" fill="#e6e9f2" fill-opacity="0.92">b5 · idle before churn</text>
+    <text x="218" y="725" font-size="10" fill="#e6e9f2" fill-opacity="0.5">mixed · done · 5q · 0.74</text>
+
+    <circle cx="200" cy="790" r="20" fill="url(#g-indigo)"/>
+    <circle cx="200" cy="790" r="9" fill="#0e1220" stroke="#818cf8" stroke-width="2.2"/><circle cx="200" cy="790" r="3.2" fill="#818cf8"/>
+    <text x="218" y="794" font-size="12" fill="#e6e9f2" fill-opacity="0.92">b6 · seat contraction</text>
+    <text x="218" y="809" font-size="10" fill="#a5b4fc">SQL · exploring · 2/4</text>
+  </g>
+  <!-- legend -->
+  <line x1="56" y1="880" x2="344" y2="880" stroke="#e6e9f2" stroke-opacity="0.08"/>
+  <g font-size="11" fill="#e6e9f2" fill-opacity="0.7">
+    <circle cx="62" cy="902" r="4" fill="#34d399"/><text x="72" y="906">done</text>
+    <circle cx="122" cy="902" r="4" fill="#818cf8"/><text x="132" y="906">exploring</text>
+    <circle cx="206" cy="902" r="4" fill="#fbbf24"/><text x="216" y="906">forking</text>
+    <circle cx="276" cy="902" r="4" fill="#f87171"/><text x="286" y="906">failed</text>
+  </g>
+  <text x="56" y="932" font-size="10.5" fill="#e6e9f2" fill-opacity="0.45">click a node to focus its branch</text>
+  <text x="56" y="948" font-size="10.5" fill="#e6e9f2" fill-opacity="0.45">GET /api/runs/7f3a2c/lineage</text>
+
+  <!-- ===================== CENTER: AGENT GRID ===================== -->
+  <text x="380" y="252" font-size="13" font-weight="700" fill="#e6e9f2">Agents</text>
+  <text x="1180" y="252" font-size="11" fill="#e6e9f2" fill-opacity="0.45" text-anchor="end">6 branches · 4 findings · 2 exploring</text>
+
+  <!-- card 1 (380,262): churn by plan tier -->
+  <g>
+    <rect x="380" y="262" width="392" height="225" rx="14" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="396" y="288" font-size="13" font-weight="700" fill="#e6e9f2">Churn rate by plan tier</text>
+    <rect x="700" y="274" width="56" height="20" rx="10" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.5"/>
+    <text x="728" y="288" font-size="10" font-weight="700" fill="#a5b4fc" text-anchor="middle" letter-spacing="1">SQL</text>
+    <text x="396" y="306" font-size="10" fill="#e6e9f2" fill-opacity="0.5">branch b1 · done · 6 queries · 214 ms total</text>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="396" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="420" y="328" fill="#a5b4fc">think</text>
+      <rect x="452" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="476" y="328" fill="#a5b4fc">sql</text>
+      <rect x="508" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="532" y="328" fill="#a5b4fc">observe</text>
+      <rect x="564" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="588" y="328" fill="#a5b4fc">sql</text>
+      <rect x="620" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="644" y="328" fill="#a5b4fc">observe</text>
+      <rect x="676" y="316" width="52" height="18" rx="9" fill="#34d399" fill-opacity="0.15" stroke="#34d399" stroke-opacity="0.5"/><text x="702" y="328" fill="#34d399">finding</text>
+    </g>
+    <rect x="396" y="344" width="360" height="66" rx="8" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.06"/>
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <text x="406" y="360"><tspan fill="#22d3ee">SELECT</tspan> plan, AVG(churned) <tspan fill="#22d3ee">AS</tspan> churn_rate,</text>
+      <text x="406" y="374">       SUM(mrr) FILTER (WHERE churned=1) <tspan fill="#22d3ee">AS</tspan> mrr_lost</text>
+      <text x="406" y="388"><tspan fill="#22d3ee">FROM</tspan> default.public.data</text>
+      <text x="406" y="402"><tspan fill="#22d3ee">GROUP BY</tspan> 1 <tspan fill="#22d3ee">ORDER BY</tspan> churn_rate DESC <tspan fill="#22d3ee">LIMIT</tspan> 15</text>
+    </g>
+    <rect x="736" y="350" width="9" height="9" rx="2" fill="none" stroke="#e6e9f2" stroke-opacity="0.4"/><rect x="739" y="353" width="9" height="9" rx="2" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.4"/>
+    <text x="396" y="430" font-size="10" fill="#e6e9f2" fill-opacity="0.5">confidence</text>
+    <rect x="462" y="424" width="200" height="6" rx="3" fill="#e6e9f2" fill-opacity="0.08"/>
+    <rect x="462" y="424" width="172" height="6" rx="3" fill="url(#bar)"/>
+    <text x="672" y="430" font-size="11" font-weight="700" fill="#34d399">0.86</text>
+    <text x="396" y="454" font-size="11" fill="#e6e9f2" fill-opacity="0.85">Starter churns 3.1× Enterprise and</text>
+    <text x="396" y="469" font-size="11" fill="#e6e9f2" fill-opacity="0.85">accounts for 61% of lost MRR.</text>
+    <g fill="url(#vbar)">
+      <rect x="670" y="446" width="16" height="28" rx="2"/>
+      <rect x="692" y="455" width="16" height="19" rx="2"/>
+      <rect x="714" y="462" width="16" height="12" rx="2"/>
+      <rect x="736" y="468" width="16" height="6" rx="2"/>
+    </g>
+    <line x1="670" y1="474.5" x2="752" y2="474.5" stroke="#e6e9f2" stroke-opacity="0.2"/>
+  </g>
+
+  <!-- card 2 (788,262): feedback themes (BM25) -->
+  <g>
+    <rect x="788" y="262" width="392" height="225" rx="14" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="804" y="288" font-size="13" font-weight="700" fill="#e6e9f2">Feedback themes among churned</text>
+    <rect x="1108" y="274" width="56" height="20" rx="10" fill="#fbbf24" fill-opacity="0.12" stroke="#fbbf24" stroke-opacity="0.5"/>
+    <text x="1136" y="288" font-size="10" font-weight="700" fill="#fbbf24" text-anchor="middle" letter-spacing="1">BM25</text>
+    <text x="804" y="306" font-size="10" fill="#e6e9f2" fill-opacity="0.5">branch b2 · done · 3 queries · 96 ms total</text>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="804" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="828" y="328" fill="#a5b4fc">think</text>
+      <rect x="860" y="316" width="48" height="18" rx="9" fill="#fbbf24" fill-opacity="0.12" stroke="#fbbf24" stroke-opacity="0.4"/><text x="884" y="328" fill="#fbbf24">bm25</text>
+      <rect x="916" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="940" y="328" fill="#a5b4fc">observe</text>
+      <rect x="972" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="996" y="328" fill="#a5b4fc">sql</text>
+      <rect x="1028" y="316" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="1052" y="328" fill="#a5b4fc">observe</text>
+      <rect x="1084" y="316" width="52" height="18" rx="9" fill="#34d399" fill-opacity="0.15" stroke="#34d399" stroke-opacity="0.5"/><text x="1110" y="328" fill="#34d399">finding</text>
+    </g>
+    <rect x="804" y="344" width="360" height="66" rx="8" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.06"/>
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <text x="814" y="360"><tspan fill="#22d3ee">SELECT</tspan> customer_id, plan, feedback, score</text>
+      <text x="814" y="374"><tspan fill="#22d3ee">FROM</tspan> <tspan fill="#fbbf24">bm25_search</tspan>('default.public.data', 'feedback',</text>
+      <text x="814" y="388">     'slow support refund billing surprise', 20)</text>
+      <text x="814" y="402"><tspan fill="#22d3ee">ORDER BY</tspan> score DESC</text>
+    </g>
+    <rect x="1144" y="350" width="9" height="9" rx="2" fill="none" stroke="#e6e9f2" stroke-opacity="0.4"/><rect x="1147" y="353" width="9" height="9" rx="2" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.4"/>
+    <text x="804" y="430" font-size="10" fill="#e6e9f2" fill-opacity="0.5">confidence</text>
+    <rect x="870" y="424" width="200" height="6" rx="3" fill="#e6e9f2" fill-opacity="0.08"/>
+    <rect x="870" y="424" width="156" height="6" rx="3" fill="url(#bar)"/>
+    <text x="1080" y="430" font-size="11" font-weight="700" fill="#34d399">0.78</text>
+    <text x="804" y="454" font-size="11" fill="#e6e9f2" fill-opacity="0.85">'slow support' appears in 71% of top</text>
+    <text x="804" y="469" font-size="11" fill="#e6e9f2" fill-opacity="0.85">hits; billing surprises in 24%.</text>
+    <g fill="url(#vbar)">
+      <rect x="1078" y="446" width="16" height="28" rx="2"/>
+      <rect x="1100" y="464" width="16" height="10" rx="2"/>
+      <rect x="1122" y="469" width="16" height="5" rx="2"/>
+      <rect x="1144" y="471" width="16" height="3" rx="2"/>
+    </g>
+    <line x1="1078" y1="474.5" x2="1160" y2="474.5" stroke="#e6e9f2" stroke-opacity="0.2"/>
+  </g>
+
+  <!-- card 3 (380,503): vector, exploring -->
+  <g>
+    <rect x="380" y="503" width="392" height="225" rx="14" fill="#0e1220" stroke="#818cf8" stroke-opacity="0.45"/>
+    <text x="396" y="529" font-size="13" font-weight="700" fill="#e6e9f2">'Frustrated with onboarding' neighbours</text>
+    <rect x="692" y="515" width="64" height="20" rx="10" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-opacity="0.5"/>
+    <text x="724" y="529" font-size="10" font-weight="700" fill="#22d3ee" text-anchor="middle" letter-spacing="1">VECTOR</text>
+    <circle cx="400" cy="544" r="3.5" fill="#818cf8"/>
+    <text x="409" y="547" font-size="10" fill="#a5b4fc">step 3 of 4 · observing 20 rows · 44 ms</text>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="396" y="557" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="420" y="569" fill="#a5b4fc">think</text>
+      <rect x="452" y="557" width="48" height="18" rx="9" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-opacity="0.4"/><text x="476" y="569" fill="#22d3ee">vector</text>
+      <rect x="508" y="557" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.3" stroke="#818cf8" stroke-opacity="0.9"/><text x="532" y="569" fill="#e6e9f2">observe</text>
+      <rect x="564" y="557" width="48" height="18" rx="9" fill="none" stroke="#e6e9f2" stroke-opacity="0.15"/><text x="588" y="569" fill="#e6e9f2" fill-opacity="0.3">…</text>
+      <rect x="620" y="557" width="52" height="18" rx="9" fill="none" stroke="#e6e9f2" stroke-opacity="0.15"/><text x="646" y="569" fill="#e6e9f2" fill-opacity="0.3">finding</text>
+    </g>
+    <rect x="396" y="585" width="360" height="66" rx="8" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.06"/>
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <text x="406" y="601"><tspan fill="#22d3ee">SELECT</tspan> customer_id, plan, nps_score, _distance</text>
+      <text x="406" y="615"><tspan fill="#22d3ee">FROM</tspan> <tspan fill="#22d3ee">vector_search</tspan>('default.public.data_vec',</text>
+      <text x="406" y="629">     'feedback', 'frustrated with onboarding', 20)</text>
+      <text x="406" y="643"><tspan fill="#22d3ee">ORDER BY</tspan> _distance ASC</text>
+    </g>
+    <rect x="736" y="591" width="9" height="9" rx="2" fill="none" stroke="#e6e9f2" stroke-opacity="0.4"/><rect x="739" y="594" width="9" height="9" rx="2" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.4"/>
+    <text x="396" y="671" font-size="10" fill="#e6e9f2" fill-opacity="0.5">confidence</text>
+    <rect x="462" y="665" width="200" height="6" rx="3" fill="#e6e9f2" fill-opacity="0.08"/>
+    <text x="672" y="671" font-size="11" fill="#e6e9f2" fill-opacity="0.35">—</text>
+    <rect x="396" y="688" width="250" height="9" rx="4" fill="#e6e9f2" fill-opacity="0.07"/>
+    <rect x="396" y="704" width="190" height="9" rx="4" fill="#e6e9f2" fill-opacity="0.07"/>
+    <rect x="670" y="688" width="82" height="26" rx="4" fill="#e6e9f2" fill-opacity="0.05"/>
+    <text x="656" y="710" font-size="10" fill="#a5b4fc" fill-opacity="0.8" text-anchor="end">waiting for finding…</text>
+  </g>
+
+  <!-- card 4 (788,503): MRR at risk -->
+  <g>
+    <rect x="788" y="503" width="392" height="225" rx="14" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="804" y="529" font-size="13" font-weight="700" fill="#e6e9f2">MRR at risk: low NPS + high tickets</text>
+    <rect x="1108" y="515" width="56" height="20" rx="10" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.5"/>
+    <text x="1136" y="529" font-size="10" font-weight="700" fill="#a5b4fc" text-anchor="middle" letter-spacing="1">SQL</text>
+    <text x="804" y="547" font-size="10" fill="#e6e9f2" fill-opacity="0.5">branch b4 · done · 4 queries · 171 ms total</text>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="804" y="557" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="828" y="569" fill="#a5b4fc">think</text>
+      <rect x="860" y="557" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="884" y="569" fill="#a5b4fc">sql</text>
+      <rect x="916" y="557" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="940" y="569" fill="#a5b4fc">observe</text>
+      <rect x="972" y="557" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="996" y="569" fill="#a5b4fc">sql</text>
+      <rect x="1028" y="557" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="1052" y="569" fill="#a5b4fc">observe</text>
+      <rect x="1084" y="557" width="52" height="18" rx="9" fill="#34d399" fill-opacity="0.15" stroke="#34d399" stroke-opacity="0.5"/><text x="1110" y="569" fill="#34d399">finding</text>
+    </g>
+    <rect x="804" y="585" width="360" height="66" rx="8" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.06"/>
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <text x="814" y="601"><tspan fill="#22d3ee">SELECT</tspan> region, SUM(mrr) <tspan fill="#22d3ee">AS</tspan> mrr_at_risk</text>
+      <text x="814" y="615"><tspan fill="#22d3ee">FROM</tspan> default.public.data <tspan fill="#22d3ee">WHERE</tspan> churned=0</text>
+      <text x="814" y="629">  <tspan fill="#22d3ee">AND</tspan> nps_score&lt;=6 <tspan fill="#22d3ee">AND</tspan> support_tickets_90d&gt;=5</text>
+      <text x="814" y="643"><tspan fill="#22d3ee">GROUP BY</tspan> 1 <tspan fill="#22d3ee">ORDER BY</tspan> 2 DESC <tspan fill="#22d3ee">LIMIT</tspan> 15</text>
+    </g>
+    <rect x="1144" y="591" width="9" height="9" rx="2" fill="none" stroke="#e6e9f2" stroke-opacity="0.4"/><rect x="1147" y="594" width="9" height="9" rx="2" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.4"/>
+    <text x="804" y="671" font-size="10" fill="#e6e9f2" fill-opacity="0.5">confidence</text>
+    <rect x="870" y="665" width="200" height="6" rx="3" fill="#e6e9f2" fill-opacity="0.08"/>
+    <rect x="870" y="665" width="182" height="6" rx="3" fill="url(#bar)"/>
+    <text x="1080" y="671" font-size="11" font-weight="700" fill="#34d399">0.91</text>
+    <text x="804" y="695" font-size="11" fill="#e6e9f2" fill-opacity="0.85">$412k MRR sits in accounts with NPS ≤ 6</text>
+    <text x="804" y="710" font-size="11" fill="#e6e9f2" fill-opacity="0.85">and 5+ tickets; EMEA holds 38% of it.</text>
+    <g fill="url(#vbar)">
+      <rect x="1078" y="689" width="16" height="26" rx="2"/>
+      <rect x="1100" y="697" width="16" height="18" rx="2"/>
+      <rect x="1122" y="702" width="16" height="13" rx="2"/>
+      <rect x="1144" y="707" width="16" height="8" rx="2"/>
+    </g>
+    <line x1="1078" y1="715.5" x2="1160" y2="715.5" stroke="#e6e9f2" stroke-opacity="0.2"/>
+  </g>
+
+  <!-- card 5 (380,744): idle days (mixed) -->
+  <g>
+    <rect x="380" y="744" width="392" height="225" rx="14" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+    <text x="396" y="770" font-size="13" font-weight="700" fill="#e6e9f2">Idle days before churn</text>
+    <rect x="700" y="756" width="56" height="20" rx="10" fill="#34d399" fill-opacity="0.12" stroke="#34d399" stroke-opacity="0.5"/>
+    <text x="728" y="770" font-size="10" font-weight="700" fill="#34d399" text-anchor="middle" letter-spacing="1">MIXED</text>
+    <text x="396" y="788" font-size="10" fill="#e6e9f2" fill-opacity="0.5">branch b5 · done · 5 queries · 240 ms total</text>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="396" y="798" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="420" y="810" fill="#a5b4fc">think</text>
+      <rect x="452" y="798" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="476" y="810" fill="#a5b4fc">sql</text>
+      <rect x="508" y="798" width="48" height="18" rx="9" fill="#fbbf24" fill-opacity="0.12" stroke="#fbbf24" stroke-opacity="0.4"/><text x="532" y="810" fill="#fbbf24">bm25</text>
+      <rect x="564" y="798" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="588" y="810" fill="#a5b4fc">sql</text>
+      <rect x="620" y="798" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="644" y="810" fill="#a5b4fc">observe</text>
+      <rect x="676" y="798" width="52" height="18" rx="9" fill="#34d399" fill-opacity="0.15" stroke="#34d399" stroke-opacity="0.5"/><text x="702" y="810" fill="#34d399">finding</text>
+    </g>
+    <rect x="396" y="826" width="360" height="66" rx="8" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.06"/>
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <text x="406" y="842"><tspan fill="#22d3ee">SELECT</tspan> churned, percentile_cont(0.5) WITHIN GROUP</text>
+      <text x="406" y="856">  (<tspan fill="#22d3ee">ORDER BY</tspan> DATE '2026-09-01' - last_active_date)</text>
+      <text x="406" y="870">  <tspan fill="#22d3ee">AS</tspan> median_idle_days, COUNT(*) <tspan fill="#22d3ee">AS</tspan> n</text>
+      <text x="406" y="884"><tspan fill="#22d3ee">FROM</tspan> default.public.data <tspan fill="#22d3ee">GROUP BY</tspan> churned</text>
+    </g>
+    <rect x="736" y="832" width="9" height="9" rx="2" fill="none" stroke="#e6e9f2" stroke-opacity="0.4"/><rect x="739" y="835" width="9" height="9" rx="2" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.4"/>
+    <text x="396" y="912" font-size="10" fill="#e6e9f2" fill-opacity="0.5">confidence</text>
+    <rect x="462" y="906" width="200" height="6" rx="3" fill="#e6e9f2" fill-opacity="0.08"/>
+    <rect x="462" y="906" width="148" height="6" rx="3" fill="url(#bar)"/>
+    <text x="672" y="912" font-size="11" font-weight="700" fill="#34d399">0.74</text>
+    <text x="396" y="936" font-size="11" fill="#e6e9f2" fill-opacity="0.85">Churned accounts idled a median 47 days</text>
+    <text x="396" y="951" font-size="11" fill="#e6e9f2" fill-opacity="0.85">vs 6 for retained; idle &gt; 30d predicts it.</text>
+    <g fill="url(#vbar)">
+      <rect x="670" y="930" width="30" height="26" rx="2"/>
+      <rect x="722" y="952" width="30" height="4" rx="2"/>
+    </g>
+    <text x="685" y="965" font-size="8" fill="#e6e9f2" fill-opacity="0.45" text-anchor="middle">churned</text>
+    <text x="737" y="965" font-size="8" fill="#e6e9f2" fill-opacity="0.45" text-anchor="middle">retained</text>
+  </g>
+
+  <!-- card 6 (788,744): seat contraction, exploring -->
+  <g>
+    <rect x="788" y="744" width="392" height="225" rx="14" fill="#0e1220" stroke="#818cf8" stroke-opacity="0.45"/>
+    <text x="804" y="770" font-size="13" font-weight="700" fill="#e6e9f2">Seat contraction by industry</text>
+    <rect x="1108" y="756" width="56" height="20" rx="10" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.5"/>
+    <text x="1136" y="770" font-size="10" font-weight="700" fill="#a5b4fc" text-anchor="middle" letter-spacing="1">SQL</text>
+    <circle cx="808" cy="785" r="3.5" fill="#818cf8"/>
+    <text x="817" y="788" font-size="10" fill="#a5b4fc">step 2 of 4 · running SQL on branch b6 · 12 ms</text>
+    <g font-size="9.5" font-weight="600" text-anchor="middle">
+      <rect x="804" y="798" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.4"/><text x="828" y="810" fill="#a5b4fc">think</text>
+      <rect x="860" y="798" width="48" height="18" rx="9" fill="#6366f1" fill-opacity="0.3" stroke="#818cf8" stroke-opacity="0.9"/><text x="884" y="810" fill="#e6e9f2">sql</text>
+      <rect x="916" y="798" width="48" height="18" rx="9" fill="none" stroke="#e6e9f2" stroke-opacity="0.15"/><text x="940" y="810" fill="#e6e9f2" fill-opacity="0.3">observe</text>
+      <rect x="972" y="798" width="48" height="18" rx="9" fill="none" stroke="#e6e9f2" stroke-opacity="0.15"/><text x="996" y="810" fill="#e6e9f2" fill-opacity="0.3">…</text>
+      <rect x="1028" y="798" width="52" height="18" rx="9" fill="none" stroke="#e6e9f2" stroke-opacity="0.15"/><text x="1054" y="810" fill="#e6e9f2" fill-opacity="0.3">finding</text>
+    </g>
+    <rect x="804" y="826" width="360" height="66" rx="8" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.06"/>
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <text x="814" y="842"><tspan fill="#22d3ee">SELECT</tspan> industry, SUM(seats) <tspan fill="#22d3ee">AS</tspan> seats,</text>
+      <text x="814" y="856">       AVG(nps_score) <tspan fill="#22d3ee">AS</tspan> nps, SUM(mrr) <tspan fill="#22d3ee">AS</tspan> mrr</text>
+      <text x="814" y="870"><tspan fill="#22d3ee">FROM</tspan> default.public.data <tspan fill="#22d3ee">WHERE</tspan> churned = 0</text>
+      <text x="814" y="884"><tspan fill="#22d3ee">GROUP BY</tspan> 1 <tspan fill="#22d3ee">ORDER BY</tspan> seats DESC <tspan fill="#22d3ee">LIMIT</tspan> 15</text>
+    </g>
+    <rect x="1144" y="832" width="9" height="9" rx="2" fill="none" stroke="#e6e9f2" stroke-opacity="0.4"/><rect x="1147" y="835" width="9" height="9" rx="2" fill="#07090f" stroke="#e6e9f2" stroke-opacity="0.4"/>
+    <text x="804" y="912" font-size="10" fill="#e6e9f2" fill-opacity="0.5">confidence</text>
+    <rect x="870" y="906" width="200" height="6" rx="3" fill="#e6e9f2" fill-opacity="0.08"/>
+    <text x="1080" y="912" font-size="11" fill="#e6e9f2" fill-opacity="0.35">—</text>
+    <rect x="804" y="929" width="240" height="9" rx="4" fill="#e6e9f2" fill-opacity="0.07"/>
+    <rect x="804" y="945" width="170" height="9" rx="4" fill="#e6e9f2" fill-opacity="0.07"/>
+    <rect x="1078" y="929" width="82" height="26" rx="4" fill="#e6e9f2" fill-opacity="0.05"/>
+    <text x="1064" y="951" font-size="10" fill="#a5b4fc" fill-opacity="0.8" text-anchor="end">waiting for finding…</text>
+  </g>
+
+  <!-- ===================== RIGHT: REPORT ===================== -->
+  <g font-size="12" fill="#e6e9f2">
+    <text x="1200" y="252" font-weight="700">Report</text>
+    <rect x="1200" y="259" width="42" height="2" rx="1" fill="url(#wm)"/>
+    <text x="1258" y="252" fill-opacity="0.55">Findings</text>
+    <text x="1322" y="252" fill-opacity="0.55">Query log</text>
+    <text x="1394" y="252" fill-opacity="0.55">Memory</text>
+    <text x="1452" y="252" fill-opacity="0.55">SQL</text>
+    <text x="1486" y="252" fill-opacity="0.55">Pipeline</text>
+  </g>
+  <rect x="1200" y="272" width="360" height="698" rx="14" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.08"/>
+  <text x="1220" y="300" font-size="13.5" font-weight="700" fill="#e6e9f2">Why customers churn and where</text>
+  <text x="1220" y="318" font-size="13.5" font-weight="700" fill="#e6e9f2">revenue is at risk</text>
+  <text x="1220" y="342" font-size="9.5" font-weight="700" fill="#e6e9f2" fill-opacity="0.45" letter-spacing="1.5">EXECUTIVE SUMMARY</text>
+  <g font-size="11.5" fill="#e6e9f2" fill-opacity="0.8">
+    <text x="1220" y="362">Churn concentrates in the Starter tier and in</text>
+    <text x="1220" y="379">accounts that went quiet for 30+ days. Support</text>
+    <text x="1220" y="396">response time is the dominant complaint across</text>
+    <text x="1220" y="413">both BM25 and vector neighbourhoods of churn</text>
+    <text x="1220" y="430">feedback. $412k of live MRR shows the same</text>
+    <text x="1220" y="447">pattern and should be prioritised for outreach.</text>
+  </g>
+
+  <text x="1220" y="480" font-size="9.5" font-weight="700" fill="#e6e9f2" fill-opacity="0.45" letter-spacing="1.5">KEY FINDINGS</text>
+  <g font-size="11.5" fill="#e6e9f2" fill-opacity="0.85">
+    <text x="1220" y="502">Starter plan churns 3.1× Enterprise and</text>
+    <text x="1220" y="518">drives 61% of lost MRR.</text>
+    <rect x="1220" y="526" width="80" height="17" rx="8.5" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.5"/>
+    <text x="1260" y="538" font-size="9.5" fill="#a5b4fc" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">[branch:b1]</text>
+
+    <text x="1220" y="564">'Slow support' appears in 71% of churn</text>
+    <text x="1220" y="580">feedback hits; billing surprise in 24%.</text>
+    <rect x="1220" y="588" width="80" height="17" rx="8.5" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.5"/>
+    <text x="1260" y="600" font-size="9.5" fill="#a5b4fc" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">[branch:b2]</text>
+
+    <text x="1220" y="626">$412k MRR at risk where NPS ≤ 6 and</text>
+    <text x="1220" y="642">support tickets ≥ 5; EMEA holds 38%.</text>
+    <rect x="1220" y="650" width="80" height="17" rx="8.5" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.5"/>
+    <text x="1260" y="662" font-size="9.5" fill="#a5b4fc" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">[branch:b4]</text>
+
+    <text x="1220" y="688">Median 47 idle days before churn vs 6</text>
+    <text x="1220" y="704">for retained accounts.</text>
+    <rect x="1220" y="712" width="80" height="17" rx="8.5" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.5"/>
+    <text x="1260" y="724" font-size="9.5" fill="#a5b4fc" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">[branch:b5]</text>
+  </g>
+
+  <text x="1220" y="756" font-size="9.5" font-weight="700" fill="#e6e9f2" fill-opacity="0.45" letter-spacing="1.5">NEXT QUESTIONS</text>
+  <g font-size="11.5" fill="#e6e9f2" fill-opacity="0.8">
+    <text x="1220" y="776">· Does an SLA breach precede churn?</text>
+    <text x="1220" y="793">· Which Starter cohorts upgrade instead?</text>
+  </g>
+
+  <line x1="1220" y1="812" x2="1540" y2="812" stroke="#e6e9f2" stroke-opacity="0.08"/>
+  <rect x="1220" y="826" width="196" height="34" rx="8" fill="#6366f1"/>
+  <text x="1318" y="847" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Download report.md</text>
+  <rect x="1428" y="826" width="112" height="34" rx="8" fill="none" stroke="#e6e9f2" stroke-opacity="0.2"/>
+  <text x="1484" y="847" font-size="12" font-weight="600" fill="#e6e9f2" fill-opacity="0.85" text-anchor="middle">Copy link</text>
+  <text x="1220" y="884" font-size="10" fill="#e6e9f2" fill-opacity="0.45">cites 4 of 6 branches · synthesized via rocketride</text>
+
+  <rect x="1220" y="900" width="320" height="54" rx="8" fill="#141a2c" stroke="#34d399" stroke-opacity="0.35"/>
+  <circle cx="1234" cy="916" r="3.5" fill="#34d399"/>
+  <text x="1244" y="920" font-size="9.5" font-weight="700" fill="#34d399" letter-spacing="1.2">RECALLED BEFORE PLANNING · COGNEE</text>
+  <text x="1234" y="941" font-size="10.5" fill="#e6e9f2" fill-opacity="0.8">Previous run: Starter churn linked to onboarding gaps.</text>
+</svg>

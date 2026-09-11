@@ -1,0 +1,52 @@
+# ── Node / Next.js ───────────────────────────────────────────────────────────
+node_modules/
+.next/
+out/
+.pnpm-store/
+*.tsbuildinfo
+next-env.d.ts
+
+# ── Python ───────────────────────────────────────────────────────────────────
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+
+# ── Parallax runtime data ────────────────────────────────────────────────────
+.parallax/
+*.duckdb
+*.duckdb.wal
+.cognee_system/
+.cognee_data/
+cognee/
+*.log
+
+# ── Secrets / env ────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+backend/.env
+pipelines/.env
+
+# ── RocketRide extension cache ───────────────────────────────────────────────
+.rocketride/
+
+# ── Editors / OS ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+deck/~$*
+*.swp
+
+# ── Coverage / misc ──────────────────────────────────────────────────────────
+coverage/
+.coverage
+htmlcov/
+.snyk.tmp

@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title>Parallax — Many agents. Many branches. One answer.</title>
+  <defs>
+    <linearGradient id="wm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="edge" gradientUnits="userSpaceOnUse" x1="920" y1="0" x2="1330" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="g-indigo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#6366f1" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-cyan" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.5"/>
+      <stop offset="0.5" stop-color="#22d3ee" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-green" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.5"/>
+      <stop offset="0.5" stop-color="#34d399" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-amber" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.5"/>
+      <stop offset="0.5" stop-color="#fbbf24" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.62" cy="0.5" r="0.75">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.16"/>
+      <stop offset="0.55" stop-color="#22d3ee" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#07090f" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e6e9f2" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+    <pattern id="grid-major" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M200 0H0V200" fill="none" stroke="#e6e9f2" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- background -->
+  <rect width="1600" height="500" fill="#07090f"/>
+  <rect width="1600" height="500" fill="url(#grid)"/>
+  <rect width="1600" height="500" fill="url(#grid-major)"/>
+  <rect width="1600" height="500" fill="url(#vignette)"/>
+  <rect x="0" y="0" width="1600" height="500" fill="none" stroke="#e6e9f2" stroke-opacity="0.06"/>
+
+  <!-- wordmark -->
+  <text x="88" y="232" font-size="136" font-weight="800" letter-spacing="-5" fill="url(#wm)">Parallax</text>
+  <text x="94" y="292" font-size="31" font-weight="500" fill="#e6e9f2" fill-opacity="0.9" letter-spacing="0.3">Many agents. Many branches. One answer.</text>
+  <text x="95" y="334" font-size="17" fill="#e6e9f2" fill-opacity="0.55">A multi-agent data-analysis swarm. Fork a database per hypothesis and explore them all at once.</text>
+
+  <!-- sponsor pills -->
+  <g font-size="13" font-weight="600">
+    <rect x="95" y="372" width="118" height="30" rx="15" fill="#22d3ee" fill-opacity="0.1" stroke="#22d3ee" stroke-opacity="0.5"/>
+    <circle cx="113" cy="387" r="4" fill="#22d3ee"/>
+    <text x="124" y="392" fill="#22d3ee">Hotdata forks</text>
+
+    <rect x="225" y="372" width="164" height="30" rx="15" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.55"/>
+    <circle cx="243" cy="387" r="4" fill="#818cf8"/>
+    <text x="254" y="392" fill="#a5b4fc">RocketRide pipelines</text>
+
+    <rect x="401" y="372" width="136" height="30" rx="15" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-opacity="0.5"/>
+    <circle cx="419" cy="387" r="4" fill="#34d399"/>
+    <text x="430" y="392" fill="#34d399">Cognee memory</text>
+
+    <rect x="549" y="372" width="122" height="30" rx="15" fill="#fbbf24" fill-opacity="0.08" stroke="#fbbf24" stroke-opacity="0.45"/>
+    <circle cx="567" cy="387" r="4" fill="#fbbf24"/>
+    <text x="578" y="392" fill="#fbbf24">Snyk scanned</text>
+  </g>
+
+  <!-- fork graphic: root at (920,250) -> six branches at x=1330 -->
+  <g fill="none" stroke-linecap="round">
+    <!-- glow layer -->
+    <g stroke="url(#edge)" stroke-opacity="0.12" stroke-width="12">
+      <path d="M920 250 C1125 250 1125 75 1330 75"/>
+      <path d="M920 250 C1125 250 1125 145 1330 145"/>
+      <path d="M920 250 C1125 250 1125 215 1330 215"/>
+      <path d="M920 250 C1125 250 1125 285 1330 285"/>
+      <path d="M920 250 C1125 250 1125 355 1330 355"/>
+      <path d="M920 250 C1125 250 1125 425 1330 425"/>
+    </g>
+    <g stroke="url(#edge)" stroke-opacity="0.3" stroke-width="5">
+      <path d="M920 250 C1125 250 1125 75 1330 75"/>
+      <path d="M920 250 C1125 250 1125 145 1330 145"/>
+      <path d="M920 250 C1125 250 1125 215 1330 215"/>
+      <path d="M920 250 C1125 250 1125 285 1330 285"/>
+      <path d="M920 250 C1125 250 1125 355 1330 355"/>
+      <path d="M920 250 C1125 250 1125 425 1330 425"/>
+    </g>
+    <!-- core edges -->
+    <g stroke="url(#edge)" stroke-opacity="0.95" stroke-width="2">
+      <path d="M920 250 C1125 250 1125 75 1330 75"/>
+      <path d="M920 250 C1125 250 1125 145 1330 145"/>
+      <path d="M920 250 C1125 250 1125 215 1330 215"/>
+      <path d="M920 250 C1125 250 1125 285 1330 285"/>
+      <path d="M920 250 C1125 250 1125 355 1330 355"/>
+      <path d="M920 250 C1125 250 1125 425 1330 425"/>
+    </g>
+  </g>
+
+  <!-- in-flight packets at each curve midpoint (1125, 125 + y/2) -->
+  <g>
+    <circle cx="1125" cy="162.5" r="6" fill="#22d3ee" fill-opacity="0.18"/><circle cx="1125" cy="162.5" r="2.5" fill="#22d3ee"/>
+    <circle cx="1125" cy="197.5" r="6" fill="#6366f1" fill-opacity="0.2"/><circle cx="1125" cy="197.5" r="2.5" fill="#a5b4fc"/>
+    <circle cx="1125" cy="232.5" r="6" fill="#34d399" fill-opacity="0.18"/><circle cx="1125" cy="232.5" r="2.5" fill="#34d399"/>
+    <circle cx="1125" cy="267.5" r="6" fill="#fbbf24" fill-opacity="0.18"/><circle cx="1125" cy="267.5" r="2.5" fill="#fbbf24"/>
+    <circle cx="1125" cy="302.5" r="6" fill="#22d3ee" fill-opacity="0.18"/><circle cx="1125" cy="302.5" r="2.5" fill="#22d3ee"/>
+    <circle cx="1125" cy="337.5" r="6" fill="#6366f1" fill-opacity="0.2"/><circle cx="1125" cy="337.5" r="2.5" fill="#a5b4fc"/>
+  </g>
+
+  <!-- root node -->
+  <circle cx="920" cy="250" r="70" fill="url(#g-indigo)"/>
+  <circle cx="920" cy="250" r="30" fill="#6366f1" fill-opacity="0.18" stroke="#6366f1" stroke-opacity="0.35" stroke-width="1"/>
+  <circle cx="920" cy="250" r="20" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/>
+  <circle cx="920" cy="250" r="8" fill="url(#wm)"/>
+  <text x="920" y="306" font-size="13" font-weight="600" fill="#a5b4fc" text-anchor="middle" letter-spacing="1.5">ROOT DB</text>
+  <text x="920" y="324" font-size="12" fill="#e6e9f2" fill-opacity="0.5" text-anchor="middle">saas_customers · 6,000 rows</text>
+
+  <!-- branch nodes -->
+  <g>
+    <circle cx="1330" cy="75" r="34" fill="url(#g-indigo)"/>
+    <circle cx="1330" cy="75" r="13" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/>
+    <circle cx="1330" cy="75" r="4.5" fill="#818cf8"/>
+
+    <circle cx="1330" cy="145" r="34" fill="url(#g-cyan)"/>
+    <circle cx="1330" cy="145" r="13" fill="#0e1220" stroke="#22d3ee" stroke-width="2.5"/>
+    <circle cx="1330" cy="145" r="4.5" fill="#22d3ee"/>
+
+    <circle cx="1330" cy="215" r="34" fill="url(#g-green)"/>
+    <circle cx="1330" cy="215" r="13" fill="#0e1220" stroke="#34d399" stroke-width="2.5"/>
+    <circle cx="1330" cy="215" r="4.5" fill="#34d399"/>
+
+    <circle cx="1330" cy="285" r="34" fill="url(#g-amber)"/>
+    <circle cx="1330" cy="285" r="13" fill="#0e1220" stroke="#fbbf24" stroke-width="2.5"/>
+    <circle cx="1330" cy="285" r="4.5" fill="#fbbf24"/>
+
+    <circle cx="1330" cy="355" r="34" fill="url(#g-cyan)"/>
+    <circle cx="1330" cy="355" r="13" fill="#0e1220" stroke="#22d3ee" stroke-width="2.5"/>
+    <circle cx="1330" cy="355" r="4.5" fill="#22d3ee"/>
+
+    <circle cx="1330" cy="425" r="34" fill="url(#g-indigo)"/>
+    <circle cx="1330" cy="425" r="13" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/>
+    <circle cx="1330" cy="425" r="4.5" fill="#818cf8"/>
+  </g>
+
+  <!-- branch labels -->
+  <g font-size="13" fill="#e6e9f2">
+    <text x="1358" y="72" fill-opacity="0.9">SQL · churn by plan</text>
+    <text x="1358" y="88" font-size="11" fill-opacity="0.45">fork b1 · 6 queries · 0.86</text>
+    <text x="1358" y="142" fill-opacity="0.9">BM25 · feedback themes</text>
+    <text x="1358" y="158" font-size="11" fill-opacity="0.45">fork b2 · bm25_search · 0.78</text>
+    <text x="1358" y="212" fill-opacity="0.9">vector · "frustrated with…"</text>
+    <text x="1358" y="228" font-size="11" fill-opacity="0.45">fork b3 · vector_search · 0.81</text>
+    <text x="1358" y="282" fill-opacity="0.9">SQL · MRR at risk</text>
+    <text x="1358" y="298" font-size="11" fill-opacity="0.45">fork b4 · 4 queries · 0.91</text>
+    <text x="1358" y="352" fill-opacity="0.9">mixed · NPS vs tickets</text>
+    <text x="1358" y="368" font-size="11" fill-opacity="0.45">fork b5 · sql + bm25 · 0.74</text>
+    <text x="1358" y="422" fill-opacity="0.9">SQL · idle days</text>
+    <text x="1358" y="438" font-size="11" fill-opacity="0.45">fork b6 · 3 queries · 0.79</text>
+  </g>
+
+  <!-- footer caption -->
+  <text x="1560" y="474" font-size="12" fill="#e6e9f2" fill-opacity="0.35" text-anchor="end" letter-spacing="1">FORK · EXPLORE · SYNTHESIZE · REMEMBER</text>
+</svg>

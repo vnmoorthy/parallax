@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title>Parallax — Many agents. Many branches. One answer.</title>
+  <defs>
+    <linearGradient id="wm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="edge" gradientUnits="userSpaceOnUse" x1="860" y1="0" x2="1160" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="g-indigo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#6366f1" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-cyan" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-green" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-amber" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.7" cy="0.5" r="0.75">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.18"/>
+      <stop offset="0.55" stop-color="#22d3ee" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#07090f" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e6e9f2" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+    <pattern id="grid-major" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M200 0H0V200" fill="none" stroke="#e6e9f2" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="640" fill="#07090f"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+  <rect width="1280" height="640" fill="url(#grid-major)"/>
+  <rect width="1280" height="640" fill="url(#vignette)"/>
+
+  <!-- repo handle -->
+  <text x="1216" y="56" font-size="14" fill="#e6e9f2" fill-opacity="0.45" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">github.com/vnmoorthy/parallax</text>
+  <circle cx="72" cy="50" r="9" fill="url(#wm)"/>
+  <circle cx="72" cy="50" r="3" fill="#07090f"/>
+  <text x="90" y="56" font-size="14" font-weight="700" fill="#e6e9f2" fill-opacity="0.7" letter-spacing="2">OPEN SOURCE · MIT</text>
+
+  <!-- wordmark + tagline -->
+  <text x="64" y="300" font-size="124" font-weight="800" letter-spacing="-5" fill="url(#wm)">Parallax</text>
+  <text x="70" y="356" font-size="30" font-weight="500" fill="#e6e9f2" fill-opacity="0.92">Many agents. Many branches. One answer.</text>
+  <text x="71" y="394" font-size="16.5" fill="#e6e9f2" fill-opacity="0.55">A multi-agent data-analysis swarm. It forks a database per hypothesis,</text>
+  <text x="71" y="418" font-size="16.5" fill="#e6e9f2" fill-opacity="0.55">explores concurrently, writes a cited report, and remembers what it learned.</text>
+
+  <!-- sponsor row -->
+  <g font-size="13.5" font-weight="700">
+    <rect x="70" y="520" width="196" height="38" rx="19" fill="#6366f1"/>
+    <text x="168" y="544" fill="#ffffff" text-anchor="middle">Built with RocketRide</text>
+
+    <rect x="280" y="520" width="196" height="38" rx="19" fill="#22d3ee"/>
+    <text x="378" y="544" fill="#07090f" text-anchor="middle">Powered by Hotdata</text>
+
+    <rect x="490" y="520" width="182" height="38" rx="19" fill="#34d399"/>
+    <text x="581" y="544" fill="#07090f" text-anchor="middle">Memory by Cognee</text>
+
+    <rect x="686" y="520" width="164" height="38" rx="19" fill="#4c4a73" stroke="#a5b4fc" stroke-opacity="0.5"/>
+    <text x="768" y="544" fill="#ffffff" text-anchor="middle">Secured by Snyk</text>
+  </g>
+
+  <!-- fork graphic: root (900,320) -> six branches at x=1160 -->
+  <g fill="none" stroke-linecap="round">
+    <g stroke="url(#edge)" stroke-opacity="0.12" stroke-width="12">
+      <path d="M900 320 C1030 320 1030 120 1160 120"/>
+      <path d="M900 320 C1030 320 1030 200 1160 200"/>
+      <path d="M900 320 C1030 320 1030 280 1160 280"/>
+      <path d="M900 320 C1030 320 1030 360 1160 360"/>
+      <path d="M900 320 C1030 320 1030 440 1160 440"/>
+      <path d="M900 320 C1030 320 1030 520 1160 520"/>
+    </g>
+    <g stroke="url(#edge)" stroke-opacity="0.32" stroke-width="5">
+      <path d="M900 320 C1030 320 1030 120 1160 120"/>
+      <path d="M900 320 C1030 320 1030 200 1160 200"/>
+      <path d="M900 320 C1030 320 1030 280 1160 280"/>
+      <path d="M900 320 C1030 320 1030 360 1160 360"/>
+      <path d="M900 320 C1030 320 1030 440 1160 440"/>
+      <path d="M900 320 C1030 320 1030 520 1160 520"/>
+    </g>
+    <g stroke="url(#edge)" stroke-opacity="0.95" stroke-width="2">
+      <path d="M900 320 C1030 320 1030 120 1160 120"/>
+      <path d="M900 320 C1030 320 1030 200 1160 200"/>
+      <path d="M900 320 C1030 320 1030 280 1160 280"/>
+      <path d="M900 320 C1030 320 1030 360 1160 360"/>
+      <path d="M900 320 C1030 320 1030 440 1160 440"/>
+      <path d="M900 320 C1030 320 1030 520 1160 520"/>
+    </g>
+  </g>
+  <!-- packets at midpoints (1030, 160 + y/2) -->
+  <g>
+    <circle cx="1030" cy="220" r="2.5" fill="#22d3ee"/>
+    <circle cx="1030" cy="260" r="2.5" fill="#a5b4fc"/>
+    <circle cx="1030" cy="300" r="2.5" fill="#34d399"/>
+    <circle cx="1030" cy="340" r="2.5" fill="#fbbf24"/>
+    <circle cx="1030" cy="380" r="2.5" fill="#22d3ee"/>
+    <circle cx="1030" cy="420" r="2.5" fill="#a5b4fc"/>
+  </g>
+  <!-- root -->
+  <circle cx="900" cy="320" r="76" fill="url(#g-indigo)"/>
+  <circle cx="900" cy="320" r="32" fill="#6366f1" fill-opacity="0.16" stroke="#6366f1" stroke-opacity="0.35"/>
+  <circle cx="900" cy="320" r="21" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/>
+  <circle cx="900" cy="320" r="8" fill="url(#wm)"/>
+  <text x="900" y="378" font-size="12" font-weight="700" fill="#a5b4fc" text-anchor="middle" letter-spacing="1.5">ROOT DB</text>
+  <!-- branches -->
+  <g>
+    <circle cx="1160" cy="120" r="32" fill="url(#g-indigo)"/><circle cx="1160" cy="120" r="12" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/><circle cx="1160" cy="120" r="4" fill="#818cf8"/>
+    <circle cx="1160" cy="200" r="32" fill="url(#g-cyan)"/><circle cx="1160" cy="200" r="12" fill="#0e1220" stroke="#22d3ee" stroke-width="2.5"/><circle cx="1160" cy="200" r="4" fill="#22d3ee"/>
+    <circle cx="1160" cy="280" r="32" fill="url(#g-green)"/><circle cx="1160" cy="280" r="12" fill="#0e1220" stroke="#34d399" stroke-width="2.5"/><circle cx="1160" cy="280" r="4" fill="#34d399"/>
+    <circle cx="1160" cy="360" r="32" fill="url(#g-amber)"/><circle cx="1160" cy="360" r="12" fill="#0e1220" stroke="#fbbf24" stroke-width="2.5"/><circle cx="1160" cy="360" r="4" fill="#fbbf24"/>
+    <circle cx="1160" cy="440" r="32" fill="url(#g-cyan)"/><circle cx="1160" cy="440" r="12" fill="#0e1220" stroke="#22d3ee" stroke-width="2.5"/><circle cx="1160" cy="440" r="4" fill="#22d3ee"/>
+    <circle cx="1160" cy="520" r="32" fill="url(#g-indigo)"/><circle cx="1160" cy="520" r="12" fill="#0e1220" stroke="#818cf8" stroke-width="2.5"/><circle cx="1160" cy="520" r="4" fill="#818cf8"/>
+  </g>
+  <g font-size="11.5" fill="#e6e9f2" fill-opacity="0.7">
+    <text x="1184" y="124">SQL</text>
+    <text x="1184" y="204">BM25</text>
+    <text x="1184" y="284">vector</text>
+    <text x="1184" y="364">SQL</text>
+    <text x="1184" y="444">mixed</text>
+    <text x="1184" y="524">SQL</text>
+  </g>
+  <text x="1216" y="600" font-size="11.5" fill="#e6e9f2" fill-opacity="0.35" text-anchor="end" letter-spacing="1.5">FORK · EXPLORE · SYNTHESIZE · REMEMBER</text>
+</svg>

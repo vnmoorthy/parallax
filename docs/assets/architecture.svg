@@ -1,0 +1,332 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title>Parallax system architecture</title>
+  <defs>
+    <linearGradient id="wm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e6e9f2" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="g-green" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-cyan" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="m-indigo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#818cf8"/></marker>
+    <marker id="m-indigo-rev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10 0L0 5L10 10z" fill="#818cf8"/></marker>
+    <marker id="m-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#22d3ee"/></marker>
+    <marker id="m-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#34d399"/></marker>
+    <marker id="m-green-rev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10 0L0 5L10 10z" fill="#34d399"/></marker>
+    <marker id="m-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#fbbf24"/></marker>
+    <marker id="m-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#e6e9f2" fill-opacity="0.6"/></marker>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#07090f"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+
+  <!-- header -->
+  <text x="60" y="52" font-size="26" font-weight="800" fill="#e6e9f2" letter-spacing="-0.5">Parallax <tspan fill="url(#wm)">·</tspan> system architecture</text>
+  <text x="60" y="78" font-size="14" fill="#e6e9f2" fill-opacity="0.55">Next.js Mission Control ⇄ FastAPI orchestrator → Hotdata forks · RocketRide pipelines · Cognee memory · Snyk in CI. Every cloud piece has a zero-key local fallback.</text>
+
+  <!-- ===================== ROW 1 ===================== -->
+  <!-- UI box -->
+  <g>
+    <rect x="60" y="110" width="400" height="220" rx="16" fill="#0e1220" stroke="#6366f1" stroke-opacity="0.5"/>
+    <rect x="76" y="110" width="368" height="3" rx="1.5" fill="#6366f1"/>
+    <text x="84" y="138" font-size="11" font-weight="700" fill="#a5b4fc" letter-spacing="2">FRONTEND</text>
+    <text x="436" y="138" font-size="11" fill="#a5b4fc" fill-opacity="0.75" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">frontend/src</text>
+    <text x="84" y="166" font-size="19" font-weight="700" fill="#e6e9f2">Next.js 16 · Mission Control</text>
+    <g font-size="13" fill="#e6e9f2" fill-opacity="0.72">
+      <text x="84" y="196"><tspan fill="#22d3ee" fill-opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">/</tspan>  Launch · dataset cards · agent slider</text>
+      <text x="84" y="218"><tspan fill="#22d3ee" fill-opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">/runs/[id]</tspan>  lineage tree · agent grid · report</text>
+      <text x="84" y="240"><tspan fill="#22d3ee" fill-opacity="0.9" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">/runs · /memory · /settings</tspan></text>
+      <text x="84" y="262">zustand store applies SSE events in order</text>
+      <text x="84" y="284">React Flow · recharts · react-markdown · cmdk</text>
+    </g>
+    <text x="84" y="312" font-size="11" fill="#e6e9f2" fill-opacity="0.45" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">lib/api.ts · lib/store.ts · lib/types.ts · components/*</text>
+  </g>
+
+  <!-- Orchestrator box -->
+  <g>
+    <rect x="600" y="110" width="400" height="220" rx="16" fill="#0e1220" stroke="#6366f1" stroke-opacity="0.9" stroke-width="1.5"/>
+    <rect x="616" y="110" width="368" height="3" rx="1.5" fill="url(#wm)"/>
+    <text x="624" y="138" font-size="11" font-weight="700" fill="#a5b4fc" letter-spacing="2">BACKEND · PYTHON 3.12</text>
+    <text x="976" y="138" font-size="11" fill="#a5b4fc" fill-opacity="0.75" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">backend/app</text>
+    <text x="624" y="166" font-size="19" font-weight="700" fill="#e6e9f2">FastAPI Orchestrator</text>
+    <g font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2">
+      <rect x="624" y="182" width="172" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.08"/>
+      <text x="636" y="199" fill-opacity="0.9">swarm/orchestrator.py</text>
+      <rect x="806" y="182" width="170" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.08"/>
+      <text x="818" y="199" fill-opacity="0.9">swarm/events.py · SSE</text>
+
+      <rect x="624" y="216" width="206" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.08"/>
+      <text x="636" y="233" fill-opacity="0.9">data/factory.py → DataEngine</text>
+      <rect x="840" y="216" width="136" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.08"/>
+      <text x="852" y="233" fill-opacity="0.9">llm/router.py</text>
+
+      <rect x="624" y="250" width="150" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.08"/>
+      <text x="636" y="267" fill-opacity="0.9">memory/factory.py</text>
+      <rect x="784" y="250" width="112" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.08"/>
+      <text x="796" y="267" fill-opacity="0.9">api/routes.py</text>
+      <rect x="906" y="250" width="70" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.08"/>
+      <text x="918" y="267" fill-opacity="0.9">store</text>
+    </g>
+    <text x="624" y="298" font-size="12.5" fill="#e6e9f2" fill-opacity="0.72">asyncio.gather + semaphore(agents) · one fork per hypothesis</text>
+    <text x="624" y="316" font-size="12.5" fill="#e6e9f2" fill-opacity="0.72">in-flight counter → peak concurrency · p50 / p95 per query</text>
+  </g>
+
+  <!-- Hotdata box -->
+  <g>
+    <rect x="1140" y="110" width="400" height="440" rx="16" fill="#0e1220" stroke="#22d3ee" stroke-opacity="0.55"/>
+    <rect x="1156" y="110" width="368" height="3" rx="1.5" fill="#22d3ee"/>
+    <text x="1164" y="138" font-size="11" font-weight="700" fill="#22d3ee" letter-spacing="2">DATA · HOTDATA CLOUD</text>
+    <text x="1516" y="138" font-size="11" fill="#22d3ee" fill-opacity="0.75" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">data/hotdata.py</text>
+    <text x="1164" y="166" font-size="19" font-weight="700" fill="#e6e9f2">Hotdata</text>
+    <text x="1164" y="186" font-size="12.5" fill="#e6e9f2" fill-opacity="0.55">api.hotdata.dev/v1 · HTTP · read-only HotSQL · forks in ms</text>
+
+    <!-- fork tree -->
+    <g fill="none" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5">
+      <path d="M1340 240 C1340 276 1200 268 1200 300"/>
+      <path d="M1340 240 C1340 276 1270 268 1270 300"/>
+      <path d="M1340 240 C1340 276 1340 268 1340 300"/>
+      <path d="M1340 240 C1340 276 1410 268 1410 300"/>
+      <path d="M1340 240 C1340 276 1480 268 1480 300"/>
+    </g>
+    <circle cx="1340" cy="226" r="34" fill="url(#g-cyan)"/>
+    <circle cx="1340" cy="226" r="14" fill="#0e1220" stroke="#22d3ee" stroke-width="2.5"/>
+    <circle cx="1340" cy="226" r="5" fill="#22d3ee"/>
+    <text x="1362" y="222" font-size="11" fill="#e6e9f2" fill-opacity="0.75">root · parallax-&lt;run&gt;</text>
+    <text x="1362" y="235" font-size="10" fill="#e6e9f2" fill-opacity="0.45">tables data, data_vec · expires 24h</text>
+    <g>
+      <circle cx="1200" cy="310" r="10" fill="#0e1220" stroke="#22d3ee" stroke-width="2"/><circle cx="1200" cy="310" r="3.5" fill="#22d3ee"/>
+      <circle cx="1270" cy="310" r="10" fill="#0e1220" stroke="#22d3ee" stroke-width="2"/><circle cx="1270" cy="310" r="3.5" fill="#22d3ee"/>
+      <circle cx="1340" cy="310" r="10" fill="#0e1220" stroke="#22d3ee" stroke-width="2"/><circle cx="1340" cy="310" r="3.5" fill="#22d3ee"/>
+      <circle cx="1410" cy="310" r="10" fill="#0e1220" stroke="#22d3ee" stroke-width="2"/><circle cx="1410" cy="310" r="3.5" fill="#22d3ee"/>
+      <circle cx="1480" cy="310" r="10" fill="#0e1220" stroke="#22d3ee" stroke-width="2" stroke-dasharray="3 3"/><circle cx="1480" cy="310" r="3.5" fill="#22d3ee" fill-opacity="0.6"/>
+    </g>
+    <g font-size="11" fill="#e6e9f2" fill-opacity="0.7" text-anchor="middle">
+      <text x="1200" y="336">b1</text><text x="1270" y="336">b2</text><text x="1340" y="336">b3</text><text x="1410" y="336">b4</text><text x="1480" y="336">… bN</text>
+    </g>
+    <text x="1340" y="354" font-size="10.5" fill="#22d3ee" fill-opacity="0.8" text-anchor="middle">one forked database per hypothesis · findings table + NOTES context on each</text>
+
+    <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.78">
+      <text x="1164" y="384">POST /databases → root db, expires 24h</text>
+      <text x="1164" y="404">POST /databases/{id}/fork → branch per hypothesis</text>
+      <text x="1164" y="424">POST …/tables/{t}/loads → CSV ≤ 2 MiB chunks</text>
+      <text x="1164" y="444">POST /query + X-Database-Id → read-only SQL</text>
+      <text x="1164" y="464">POST …/indexes → bm25 on data, vector on data_vec</text>
+      <text x="1164" y="484">bm25_search(…) · vector_search(…) in SQL</text>
+      <text x="1164" y="504">POST /databases/{id}/context → NOTES per branch</text>
+      <text x="1164" y="524">GET /databases/{id}/lineage → family tree</text>
+    </g>
+  </g>
+
+  <!-- ===================== ROW 2 ===================== -->
+  <!-- Cognee box -->
+  <g>
+    <rect x="60" y="400" width="400" height="300" rx="16" fill="#0e1220" stroke="#34d399" stroke-opacity="0.55"/>
+    <rect x="76" y="400" width="368" height="3" rx="1.5" fill="#34d399"/>
+    <text x="84" y="428" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">MEMORY · COGNEE</text>
+    <text x="436" y="428" font-size="11" fill="#34d399" fill-opacity="0.75" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">memory/cognee_memory.py</text>
+    <text x="84" y="456" font-size="19" font-weight="700" fill="#e6e9f2">Cognee knowledge graph</text>
+
+    <!-- mini graph -->
+    <g stroke="#34d399" stroke-opacity="0.4" stroke-width="1.5" fill="none">
+      <line x1="200" y1="560" x2="120" y2="510"/>
+      <line x1="200" y1="560" x2="290" y2="500"/>
+      <line x1="200" y1="560" x2="130" y2="620"/>
+      <line x1="200" y1="560" x2="285" y2="622"/>
+      <line x1="200" y1="560" x2="330" y2="565"/>
+      <line x1="290" y1="500" x2="330" y2="565"/>
+      <line x1="120" y1="510" x2="130" y2="620"/>
+    </g>
+    <circle cx="200" cy="560" r="30" fill="url(#g-green)"/>
+    <circle cx="200" cy="560" r="12" fill="#0e1220" stroke="#34d399" stroke-width="2.5"/>
+    <circle cx="200" cy="560" r="4.5" fill="#34d399"/>
+    <g>
+      <circle cx="120" cy="510" r="7" fill="#0e1220" stroke="#34d399" stroke-width="2"/>
+      <circle cx="290" cy="500" r="7" fill="#0e1220" stroke="#34d399" stroke-width="2"/>
+      <circle cx="130" cy="620" r="7" fill="#0e1220" stroke="#34d399" stroke-width="2"/>
+      <circle cx="285" cy="622" r="7" fill="#0e1220" stroke="#34d399" stroke-width="2"/>
+      <circle cx="330" cy="565" r="7" fill="#0e1220" stroke="#34d399" stroke-width="2"/>
+    </g>
+    <g font-size="10.5" fill="#e6e9f2" fill-opacity="0.75">
+      <text x="222" y="556">run:7f3a2c</text>
+      <text x="222" y="569" font-size="9.5" fill-opacity="0.5">Q + findings</text>
+      <text x="90" y="496">dataset:saas_customers</text>
+      <text x="302" y="492">churn ↔ Starter plan</text>
+      <text x="94" y="640">idle &gt; 30 days</text>
+      <text x="262" y="642">slow support</text>
+      <text x="342" y="569">MRR at risk</text>
+    </g>
+
+    <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.78">
+      <text x="84" y="666">add(text, node_set=[dataset:&lt;id&gt;, run:&lt;id&gt;])</text>
+      <text x="84" y="684">cognify() in a background task · never blocks a run</text>
+    </g>
+  </g>
+
+  <!-- RocketRide box -->
+  <g>
+    <rect x="600" y="400" width="400" height="300" rx="16" fill="#0e1220" stroke="#fbbf24" stroke-opacity="0.5"/>
+    <rect x="616" y="400" width="368" height="3" rx="1.5" fill="#fbbf24"/>
+    <text x="624" y="428" font-size="11" font-weight="700" fill="#fbbf24" letter-spacing="2">ROCKETRIDE CLOUD</text>
+    <text x="976" y="428" font-size="11" fill="#fbbf24" fill-opacity="0.75" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">llm/rocketride_llm.py</text>
+    <text x="624" y="456" font-size="19" font-weight="700" fill="#e6e9f2">parallax-analyst.pipe</text>
+
+    <!-- data lane: chat -> agent -> response -->
+    <g font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+      <rect x="624" y="478" width="72" height="36" rx="8" fill="#141a2c" stroke="#fbbf24" stroke-opacity="0.45"/>
+      <text x="660" y="500" fill="#e6e9f2" fill-opacity="0.9" text-anchor="middle">chat_1</text>
+
+      <rect x="740" y="474" width="140" height="44" rx="10" fill="#fbbf24" fill-opacity="0.12" stroke="#fbbf24" stroke-opacity="0.9" stroke-width="1.5"/>
+      <text x="810" y="492" fill="#fbbf24" text-anchor="middle" font-weight="700">agent_rocketride_1</text>
+      <text x="810" y="507" fill="#e6e9f2" fill-opacity="0.7" text-anchor="middle" font-size="9.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Parallax Analyst · max_waves 12</text>
+
+      <rect x="900" y="478" width="76" height="36" rx="8" fill="#141a2c" stroke="#fbbf24" stroke-opacity="0.45"/>
+      <text x="938" y="495" fill="#e6e9f2" fill-opacity="0.9" text-anchor="middle">response</text>
+      <text x="938" y="507" fill="#e6e9f2" fill-opacity="0.5" text-anchor="middle" font-size="9">answers</text>
+    </g>
+    <g stroke="#fbbf24" stroke-opacity="0.8" stroke-width="1.5" fill="none">
+      <line x1="696" y1="496" x2="738" y2="496" marker-end="url(#m-amber)"/>
+      <line x1="880" y1="496" x2="898" y2="496" marker-end="url(#m-amber)"/>
+    </g>
+    <text x="717" y="488" font-size="8.5" fill="#fbbf24" fill-opacity="0.8" text-anchor="middle">questions</text>
+
+    <!-- control nodes -->
+    <g stroke="#fbbf24" stroke-opacity="0.45" stroke-width="1.2" stroke-dasharray="4 3" fill="none">
+      <line x1="666" y1="568" x2="790" y2="520"/>
+      <line x1="758" y1="568" x2="804" y2="520"/>
+      <line x1="848" y1="568" x2="818" y2="520"/>
+      <line x1="936" y1="568" x2="832" y2="520"/>
+    </g>
+    <g font-size="10" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2">
+      <rect x="624" y="568" width="84" height="34" rx="8" fill="#141a2c" stroke="#6366f1" stroke-opacity="0.6"/>
+      <text x="666" y="582" text-anchor="middle" fill-opacity="0.9">llm_anthropic</text>
+      <text x="666" y="595" text-anchor="middle" font-size="9" fill="#a5b4fc">Claude Sonnet</text>
+
+      <rect x="716" y="568" width="84" height="34" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.2"/>
+      <text x="758" y="582" text-anchor="middle" fill-opacity="0.9">memory_intl</text>
+      <text x="758" y="595" text-anchor="middle" font-size="9" fill-opacity="0.5">agent memory</text>
+
+      <rect x="808" y="568" width="80" height="34" rx="8" fill="#141a2c" stroke="#22d3ee" stroke-opacity="0.6"/>
+      <text x="848" y="582" text-anchor="middle" fill-opacity="0.9">db_hotdata</text>
+      <text x="848" y="595" text-anchor="middle" font-size="9" fill="#22d3ee">Hotdata tool</text>
+
+      <rect x="896" y="568" width="80" height="34" rx="8" fill="#141a2c" stroke="#34d399" stroke-opacity="0.6"/>
+      <text x="936" y="582" text-anchor="middle" fill-opacity="0.9">tool_cognee</text>
+      <text x="936" y="595" text-anchor="middle" font-size="9" fill="#34d399">Cognee tool</text>
+    </g>
+    <!-- db_hotdata controls llm_anthropic too -->
+    <path d="M848 602 V616 H666 V604" fill="none" stroke="#22d3ee" stroke-opacity="0.45" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#m-cyan)"/>
+    <text x="757" y="628" font-size="8.5" fill="#22d3ee" fill-opacity="0.7" text-anchor="middle">db_hotdata → llm (control) · GRAPH_COMPLETION on dataset parallax</text>
+
+    <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.78">
+      <text x="624" y="652">parallax-llm.pipe: chat → llm_anthropic → response</text>
+      <text x="624" y="670">use() once · chat() per planner / agent / synth call</text>
+      <text x="624" y="688">api.rocketride.ai (Cloud) or local engine :5565</text>
+    </g>
+  </g>
+
+  <!-- ===================== ROW 3 ===================== -->
+  <!-- Local fallbacks -->
+  <g>
+    <rect x="60" y="770" width="400" height="170" rx="16" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.22" stroke-dasharray="6 5"/>
+    <text x="84" y="798" font-size="11" font-weight="700" fill="#e6e9f2" fill-opacity="0.55" letter-spacing="2">ZERO-KEY FALLBACKS</text>
+    <text x="436" y="798" font-size="11" fill="#e6e9f2" fill-opacity="0.45" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">local.py · local_memory.py</text>
+    <text x="84" y="824" font-size="16" font-weight="700" fill="#e6e9f2">Local mode · runs on a laptop with no accounts</text>
+    <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <rect x="84" y="838" width="132" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="96" y="855">DuckDB file per DB</text>
+      <rect x="224" y="838" width="110" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="236" y="855">fork = copy</text>
+      <rect x="342" y="838" width="94" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="354" y="855">FTS bm25</text>
+
+      <rect x="84" y="870" width="176" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="96" y="887">ollama nomic-embed-text</text>
+      <rect x="268" y="870" width="168" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="280" y="887">hashed BoW fallback</text>
+
+      <rect x="84" y="902" width="234" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="96" y="919">FakeLLM · PARALLAX_LLM_MODE=fake</text>
+      <rect x="326" y="902" width="110" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="338" y="919">JSON memory</text>
+    </g>
+  </g>
+
+  <!-- CI / Snyk -->
+  <g>
+    <rect x="600" y="770" width="400" height="170" rx="16" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.3"/>
+    <rect x="616" y="770" width="368" height="3" rx="1.5" fill="#e6e9f2" fill-opacity="0.5"/>
+    <text x="624" y="798" font-size="11" font-weight="700" fill="#e6e9f2" fill-opacity="0.7" letter-spacing="2">SECURITY · SNYK</text>
+    <text x="976" y="798" font-size="11" fill="#e6e9f2" fill-opacity="0.45" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">.github/workflows/ci.yml</text>
+    <text x="624" y="824" font-size="16" font-weight="700" fill="#e6e9f2">CI on every push and pull request</text>
+    <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#e6e9f2" fill-opacity="0.85">
+      <rect x="624" y="838" width="118" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="636" y="855">pytest · fake</text>
+      <rect x="754" y="838" width="112" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="766" y="855">tsc + build</text>
+      <rect x="878" y="838" width="98" height="26" rx="8" fill="#141a2c" stroke="#e6e9f2" stroke-opacity="0.1"/><text x="890" y="855">pipes ok</text>
+      <line x1="742" y1="851" x2="752" y2="851" stroke="#e6e9f2" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#m-gray)"/>
+      <line x1="866" y1="851" x2="876" y2="851" stroke="#e6e9f2" stroke-opacity="0.5" stroke-width="1.5" marker-end="url(#m-gray)"/>
+
+      <rect x="624" y="872" width="352" height="26" rx="8" fill="#4c4a73" fill-opacity="0.35" stroke="#a5b4fc" stroke-opacity="0.35"/>
+      <text x="636" y="889" fill="#e6e9f2">snyk test --all-projects --severity-threshold=high</text>
+      <rect x="624" y="906" width="122" height="26" rx="8" fill="#4c4a73" fill-opacity="0.35" stroke="#a5b4fc" stroke-opacity="0.35"/>
+      <text x="636" y="923" fill="#e6e9f2">snyk code test</text>
+    </g>
+    <text x="758" y="923" font-size="11" fill="#e6e9f2" fill-opacity="0.55">continue-on-error · badge links to the public report</text>
+  </g>
+
+  <!-- Legend -->
+  <g>
+    <rect x="1140" y="770" width="400" height="170" rx="16" fill="#0e1220" stroke="#e6e9f2" stroke-opacity="0.12"/>
+    <text x="1164" y="798" font-size="11" font-weight="700" fill="#e6e9f2" fill-opacity="0.55" letter-spacing="2">LEGEND</text>
+    <g font-size="12" fill="#e6e9f2" fill-opacity="0.8">
+      <rect x="1164" y="814" width="14" height="14" rx="4" fill="#6366f1"/><text x="1186" y="826">orchestration + UI</text>
+      <rect x="1164" y="840" width="14" height="14" rx="4" fill="#22d3ee"/><text x="1186" y="852">data plane · Hotdata</text>
+      <rect x="1164" y="866" width="14" height="14" rx="4" fill="#34d399"/><text x="1186" y="878">memory · Cognee</text>
+      <rect x="1164" y="892" width="14" height="14" rx="4" fill="#fbbf24"/><text x="1186" y="904">pipelines · RocketRide</text>
+      <rect x="1164" y="918" width="14" height="14" rx="4" fill="#4c4a73" stroke="#a5b4fc" stroke-opacity="0.5"/><text x="1186" y="930">security · Snyk in CI</text>
+
+      <line x1="1360" y1="821" x2="1400" y2="821" stroke="#e6e9f2" stroke-opacity="0.7" stroke-width="1.5" marker-end="url(#m-gray)"/><text x="1410" y="826">call / data flow</text>
+      <line x1="1360" y1="847" x2="1400" y2="847" stroke="#e6e9f2" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-gray)"/><text x="1410" y="852">tool / control link</text>
+      <rect x="1360" y="866" width="40" height="14" rx="4" fill="none" stroke="#e6e9f2" stroke-opacity="0.4" stroke-dasharray="4 3"/><text x="1410" y="878">local fallback</text>
+      <circle cx="1367" cy="899" r="6" fill="#0e1220" stroke="#22d3ee" stroke-width="2"/><circle cx="1367" cy="899" r="2" fill="#22d3ee"/><text x="1410" y="904">database (root / fork)</text>
+    </g>
+  </g>
+
+  <!-- ===================== ARROWS ===================== -->
+  <!-- UI -> Orchestrator (REST) and Orchestrator -> UI (SSE) -->
+  <line x1="462" y1="186" x2="598" y2="186" stroke="#818cf8" stroke-width="1.8" marker-end="url(#m-indigo)"/>
+  <text x="530" y="176" font-size="11" fill="#a5b4fc" text-anchor="middle">REST · POST /api/runs</text>
+  <line x1="598" y1="226" x2="462" y2="226" stroke="#818cf8" stroke-width="1.8" marker-end="url(#m-indigo)"/>
+  <text x="530" y="246" font-size="11" fill="#a5b4fc" text-anchor="middle">SSE · /api/runs/{id}/events</text>
+  <text x="530" y="260" font-size="10" fill="#e6e9f2" fill-opacity="0.45" text-anchor="middle">replay buffer, then live</text>
+
+  <!-- Orchestrator -> Hotdata -->
+  <line x1="1002" y1="196" x2="1138" y2="196" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#m-cyan)"/>
+  <circle cx="1040" cy="196" r="3" fill="#22d3ee"/><circle cx="1070" cy="196" r="3" fill="#22d3ee"/><circle cx="1100" cy="196" r="3" fill="#22d3ee"/>
+  <text x="1070" y="184" font-size="11" fill="#22d3ee" text-anchor="middle">fork · load · query</text>
+  <text x="1070" y="214" font-size="11" fill="#22d3ee" text-anchor="middle">search · context</text>
+  <text x="1070" y="228" font-size="10" fill="#e6e9f2" fill-opacity="0.45" text-anchor="middle">N agents in parallel</text>
+
+  <!-- Orchestrator -> RocketRide -->
+  <line x1="800" y1="332" x2="800" y2="398" stroke="#fbbf24" stroke-width="1.8" marker-end="url(#m-amber)"/>
+  <text x="812" y="360" font-size="11" fill="#fbbf24">chat()</text>
+  <text x="812" y="374" font-size="10" fill="#e6e9f2" fill-opacity="0.5">via parallax-llm.pipe</text>
+  <text x="788" y="360" font-size="10" fill="#e6e9f2" fill-opacity="0.5" text-anchor="end">fallback: anthropic → ollama → fake</text>
+
+  <!-- Orchestrator <-> Cognee -->
+  <path d="M640 332 V366 H260 V398" fill="none" stroke="#34d399" stroke-width="1.8" marker-start="url(#m-green-rev)" marker-end="url(#m-green)"/>
+  <text x="450" y="358" font-size="11" fill="#34d399" text-anchor="middle">recall (before planning) · remember (after synthesis)</text>
+
+  <!-- RocketRide -> Hotdata (db_hotdata tool) -->
+  <path d="M1002 590 H1070 V470 H1138" fill="none" stroke="#22d3ee" stroke-opacity="0.7" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#m-cyan)"/>
+  <text x="1076" y="600" font-size="10" fill="#22d3ee" fill-opacity="0.85">db_hotdata</text>
+  <text x="1076" y="612" font-size="10" fill="#22d3ee" fill-opacity="0.6">tool</text>
+
+  <!-- RocketRide -> Cognee (tool_cognee) -->
+  <line x1="598" y1="640" x2="462" y2="640" stroke="#34d399" stroke-opacity="0.7" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#m-green)"/>
+  <text x="530" y="632" font-size="10" fill="#34d399" fill-opacity="0.85" text-anchor="middle">tool_cognee</text>
+
+  <!-- Local fallbacks -> factories (note) -->
+  <text x="260" y="758" font-size="10.5" fill="#e6e9f2" fill-opacity="0.45" text-anchor="middle">selected by data / llm / memory factories when no keys are set</text>
+  <text x="1540" y="962" font-size="10.5" fill="#e6e9f2" fill-opacity="0.45" text-anchor="end">GET /api/health reports the resolved mode of every box above</text>
+</svg>

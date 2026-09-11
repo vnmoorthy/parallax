@@ -1,0 +1,26 @@
+# Applies to the repo-root context (compose builds use ./backend and ./frontend as contexts,
+# each of which inherits these patterns when copied — keep it generic).
+.git
+.github
+.parallax
+.venv
+**/.venv
+**/node_modules
+**/.next
+**/out
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/*.duckdb
+**/*.duckdb.wal
+.env
+.env.*
+**/.env
+**/.env.*
+docs
+deck
+*.md
+!README.md
+.DS_Store
+*.log
+.rocketride

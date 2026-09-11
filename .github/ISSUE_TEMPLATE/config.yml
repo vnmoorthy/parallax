@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and ideas
+    url: https://github.com/vnmoorthy/parallax/discussions
+    about: Ask how something works, share a run, or float an idea before opening an issue.
+  - name: Security vulnerability
+    url: https://github.com/vnmoorthy/parallax/blob/main/SECURITY.md
+    about: Please report security issues privately by email, not in the public tracker.

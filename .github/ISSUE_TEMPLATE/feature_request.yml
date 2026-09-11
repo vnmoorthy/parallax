@@ -1,0 +1,51 @@
+name: Feature request
+description: Propose an improvement to Parallax
+title: "[feat]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing, check the Roadmap in the README and the [Unreleased] section of CHANGELOG.md; it may already be planned.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What can you not do today, or what is painful?
+      placeholder: When two hypotheses converge I want to combine their branches instead of re-running from the root.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should Parallax do? Include API shapes, UI sketches, or event types if you have them.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      multiple: true
+      options:
+        - Orchestrator / swarm
+        - Hotdata engine
+        - Local (DuckDB) engine
+        - LLM routing
+        - Memory (Cognee)
+        - API / SSE
+        - Frontend (Mission Control UI)
+        - Pipelines (RocketRide)
+        - Datasets
+        - CI / tooling / docs
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This still works in zero-key local mode (or degrades gracefully).
+        - label: I am willing to open a PR for this.

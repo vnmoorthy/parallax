@@ -1,0 +1,235 @@
+{
+	"components": [
+		{
+			"id": "chat_1",
+			"provider": "chat",
+			"name": "Business question",
+			"config": {
+				"hideForm": true,
+				"mode": "Source",
+				"parameters": {},
+				"type": "chat"
+			},
+			"ui": {
+				"position": {
+					"x": 20,
+					"y": 200
+				},
+				"measured": {
+					"width": 150,
+					"height": 66
+				},
+				"nodeType": "default",
+				"formDataValid": true
+			}
+		},
+		{
+			"id": "agent_rocketride_1",
+			"provider": "agent_rocketride",
+			"name": "Parallax Analyst",
+			"config": {
+				"agent_description": "Hypothesis-driven data analyst. Explores a dataset in an isolated Hotdata database with SQL, BM25 and vector search, tests competing hypotheses, and remembers what it learned in Cognee for the next investigation.",
+				"instructions": [
+					"You are the Parallax Analyst, a hypothesis-driven data analyst. You are given a business question and, usually, a dataset already loaded into the table `data` of your Hotdata scratch database (or CSV rows to load yourself with load_data).",
+					"Before touching the data, call tool_cognee_1.recall with the dataset name and the question to retrieve prior knowledge from earlier investigations. Use anything relevant to skip work you have already done and to sharpen your hypotheses.",
+					"Explore the data with the db_hotdata_1 tools: call get_schema first, then use get_data or get_sql for natural-language questions and execute for read-only SQL you write yourself (fully qualify tables as default.public.data). Call dialect if a query fails on syntax.",
+					"For free-text columns, call build_index with index_type bm25 for keyword search and vector for semantic search, then query with bm25_search('default.public.data','<column>','<query>', k) ORDER BY score DESC or vector_search('default.public.data','<column>','<query>', k) ORDER BY _distance ASC. Always select explicit columns and always add ORDER BY and LIMIT.",
+					"Form exactly three competing hypotheses that could explain the question, each with a different angle (segment, behaviour, time, text sentiment). Test each hypothesis with at least one query and record whether the evidence supports, weakens or refutes it.",
+					"Quantify everything with concrete numbers from the query results: counts, rates, averages, deltas and shares. Never state a finding without the figure that backs it. Prefer comparisons (group A vs group B, this period vs last) over single numbers.",
+					"When you are done, call tool_cognee_1.remember with a compact plain-text note: dataset name, the question, the three hypotheses with verdicts, and the two or three most important numbers. This is what future analysts will recall.",
+					"Your final answer has three sections: Executive summary (3 sentences, the answer first), Findings with evidence (one bullet per hypothesis: verdict, the key numbers and the SQL or search that produced them), and Next questions (three follow-ups worth investigating)."
+				],
+				"max_waves": 15,
+				"parameters": {}
+			},
+			"input": [
+				{
+					"lane": "questions",
+					"from": "chat_1"
+				}
+			],
+			"ui": {
+				"position": {
+					"x": 300,
+					"y": 200
+				},
+				"measured": {
+					"width": 150,
+					"height": 86
+				},
+				"nodeType": "default",
+				"formDataValid": true
+			}
+		},
+		{
+			"id": "db_hotdata_1",
+			"provider": "db_hotdata",
+			"name": "Hotdata scratch DB",
+			"config": {
+				"profile": "default",
+				"default": {
+					"apikey": "${ROCKETRIDE_DB_HOTDATA_KEY}",
+					"workspace_id": "${ROCKETRIDE_DB_HOTDATA_WORKSPACE_ID}",
+					"api_url": "",
+					"ttl": "24h",
+					"table": "data",
+					"db_description": "Parallax analysis scratch database — one isolated database per investigation. Load data with load_data before asking questions.",
+					"max_attempts": 3,
+					"max_execute_rows": 25000,
+					"allow_execute": true,
+					"job_timeout_secs": 300,
+					"async_after_ms": 5000
+				},
+				"parameters": {}
+			},
+			"control": [
+				{
+					"classType": "tool",
+					"from": "agent_rocketride_1"
+				}
+			],
+			"ui": {
+				"position": {
+					"x": 300,
+					"y": 660
+				},
+				"measured": {
+					"width": 150,
+					"height": 66
+				},
+				"nodeType": "default",
+				"formDataValid": true
+			}
+		},
+		{
+			"id": "tool_cognee_1",
+			"provider": "tool_cognee",
+			"name": "Parallax memory",
+			"config": {
+				"base_url": "${ROCKETRIDE_COGNEE_BASE_URL}",
+				"api_key": "${ROCKETRIDE_COGNEE_API_KEY}",
+				"dataset": "parallax",
+				"allow_dataset_override": false,
+				"search_type": "GRAPH_COMPLETION",
+				"top_k": 10,
+				"request_timeout": 120,
+				"show_advanced": false,
+				"type": "tool_cognee",
+				"name": "Parallax memory"
+			},
+			"control": [
+				{
+					"classType": "tool",
+					"from": "agent_rocketride_1"
+				}
+			],
+			"ui": {
+				"position": {
+					"x": 300,
+					"y": 800
+				},
+				"measured": {
+					"width": 150,
+					"height": 40
+				},
+				"nodeType": "default",
+				"formDataValid": true
+			}
+		},
+		{
+			"id": "llm_anthropic_1",
+			"provider": "llm_anthropic",
+			"name": "Claude Sonnet 4.6",
+			"config": {
+				"profile": "claude-sonnet-4-6",
+				"claude-sonnet-4-6": {
+					"apikey": "${ROCKETRIDE_ANTHROPIC_KEY}"
+				},
+				"parameters": {}
+			},
+			"control": [
+				{
+					"classType": "llm",
+					"from": "agent_rocketride_1"
+				},
+				{
+					"classType": "llm",
+					"from": "db_hotdata_1"
+				}
+			],
+			"ui": {
+				"position": {
+					"x": 300,
+					"y": 380
+				},
+				"measured": {
+					"width": 150,
+					"height": 66
+				},
+				"nodeType": "default",
+				"formDataValid": true
+			}
+		},
+		{
+			"id": "memory_internal_1",
+			"provider": "memory_internal",
+			"name": "Working memory",
+			"config": {
+				"type": "memory_internal"
+			},
+			"control": [
+				{
+					"classType": "memory",
+					"from": "agent_rocketride_1"
+				}
+			],
+			"ui": {
+				"position": {
+					"x": 300,
+					"y": 520
+				},
+				"measured": {
+					"width": 150,
+					"height": 66
+				},
+				"nodeType": "default",
+				"formDataValid": true
+			}
+		},
+		{
+			"id": "response_answers_1",
+			"provider": "response_answers",
+			"name": "Analyst report",
+			"config": {
+				"laneName": "answers"
+			},
+			"input": [
+				{
+					"lane": "answers",
+					"from": "agent_rocketride_1"
+				}
+			],
+			"ui": {
+				"position": {
+					"x": 620,
+					"y": 200
+				},
+				"measured": {
+					"width": 150,
+					"height": 66
+				},
+				"nodeType": "default",
+				"formDataValid": true
+			}
+		}
+	],
+	"name": "Parallax Analyst",
+	"project_id": "1e44d3bc-4712-4e5a-aa47-16d028458e1c",
+	"viewport": {
+		"x": 0,
+		"y": 0,
+		"zoom": 1
+	},
+	"version": 1,
+	"isLocked": false
+}
