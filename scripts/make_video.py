@@ -29,42 +29,16 @@ W, H = 1920, 1080
 
 # (id, slot_seconds, visual, narration) — visual is a slide number, "demo", or a screenshot path
 SEGMENTS = [
-    (1, 20, 1, "Every analytics team has the same bottleneck: one analyst, one query, one hypothesis at a time. "
-              "Parallax removes it. Give it a dataset and a question; it forks the database once per hypothesis, "
-              "runs a swarm of agents across the branches at the same time, writes one cited answer, and remembers "
-              "what it learned for next time."),
-    (2, 15, 2, "Why are customers churning and where is revenue at risk? That is really eight questions: by plan, by "
-              "region, by what people wrote, by how long they went quiet. One analyst runs them serially, a day of "
-              "work. Eight agents on one shared database trip over each other. And whatever they learn never persists."),
-    (3, 20, 3, "So we fork the database per hypothesis. One root database per run; the planner, primed by memory, "
-              "proposes N hypotheses; the root is forked once per hypothesis. N agents explore concurrently, each "
-              "with its own snapshot, its own indexes, its own scratch tables and notes. A synthesizer writes one "
-              "report where every claim cites its branch. Then Cognee remembers it, and the next plan starts from there."),
-    (4, 40, "demo", "Here it is live. Six thousand SaaS accounts, the churn question, six agents. Launch. The root "
-              "database is created; before planning, Parallax asks Cognee what it already knows. The plan lands: one "
-              "card per hypothesis, a mix of SQL, keyword and vector strategies. The lineage tree fans out on the "
-              "left, one node per real fork. Cards fill with SQL: think, query, observe, then a finding with a "
-              "confidence score. The report on the right cites every claim with a branch chip; click one and the "
-              "tree lights up."),
-    (5, 10, 5, "Under the hood: a Next.js Mission Control on a server-sent event stream, a FastAPI orchestrator, and "
-              "three protocols, data engine, LLM router, memory, each with a cloud implementation and a zero-key "
-              "local one."),
-    (6, 20, 6, "Hotdata is the data plane, and forking is the whole trick. One root per run, one fork per hypothesis, "
-              "BM25 and vector indexes per branch, lineage straight from the API. Then burst mode: a hundred "
-              "concurrent reads spread across five forks. p50 fifteen milliseconds, p95 thirty, fifty in flight. "
-              "Isolation means no branch ever waits on another."),
-    (7, 15, 7, "Reasoning runs through RocketRide. Every planner, agent and synthesizer call goes through the "
-              "parallax LLM pipe. And the parallax analyst pipe is the deployable analyst: a RocketRide agent "
-              "controlling Claude, a Hotdata tool and a Cognee tool. Point it at api dot rocketride dot ai and it "
-              "runs on Cloud. Nothing to host."),
-    (8, 15, 8, "Cognee makes runs compound: findings go into the graph after each run, node sets per dataset, and a "
-              "graph-completion search primes the next plan. The second run on a dataset starts smarter. Snyk scans "
-              "every push and pull request, on top of a read-only SQL guard."),
-    (9, 10, 9, "Measured, not claimed, all from real runs today: a hundred-read burst at p50 fifteen, p95 thirty; "
-              "first finding in 1.2 seconds; sixty-five tests pass; and the identical code runs offline with zero keys."),
-    (10, 15, 10, "Three commands: clone, make setup, make demo, no keys. Add keys and the same code runs on Hotdata, "
-               "RocketRide Cloud and Cognee. github dot com slash vnmoorthy slash parallax. Thank you RocketRide, "
-               "Hotdata, Cognee, Snyk and Devnovate. Parallax: many agents, many branches, one answer."),
+    (1, 18, 1, 'Every analytics team has one bottleneck: one analyst, one query, one hypothesis at a time. Parallax forks the database per hypothesis, runs a swarm of agents at once, writes one cited answer, and remembers it.'),
+    (2, 14, 2, '"Why are customers churning?" is really eight questions. One analyst answers them one by one. Eight agents on one database collide. And nothing they learn persists.'),
+    (3, 18, 3, 'So we fork. One root database, one fork per hypothesis. Agents explore in parallel with their own snapshot and indexes. A synthesizer writes one report where every claim cites its branch. Cognee remembers it for next time.'),
+    (4, 30, "demo", 'Here it is live. Six thousand SaaS accounts, six agents. Parallax recalls what it knows, plans the hypotheses, and the lineage tree fans out, one node per fork. Cards fill with SQL, keyword and vector search, then a finding with a confidence score. The report cites every claim with a branch chip.'),
+    (5, 12, 5, 'Under the hood: Next.js Mission Control, a FastAPI orchestrator, and three swappable layers: data engine, LLM router, memory. Each has a cloud version and a zero-key local version.'),
+    (6, 18, 6, 'Hotdata is the data plane. One fork per hypothesis, BM25 and vector search per branch, lineage from the API. A hundred concurrent reads across five forks: p50 fifteen milliseconds, p95 thirty.'),
+    (7, 14, 7, 'Reasoning runs through RocketRide. The analyst is a pipeline: a RocketRide agent controlling Claude, a Hotdata tool and a Cognee tool. Point it at RocketRide Cloud and there is nothing to host.'),
+    (8, 12, 8, 'Cognee makes runs compound: findings enter the graph and prime the next plan. Snyk scans every push, on top of a read-only SQL guard.'),
+    (9, 12, 9, 'Measured, not claimed: p50 fifteen, p95 thirty, first finding in 1.2 seconds, sixty-five tests passing, and it runs offline with zero keys.'),
+    (10, 16, 10, 'Clone, make setup, make demo. Add keys and the same code runs on Hotdata, RocketRide Cloud and Cognee. github.com slash vnmoorthy slash parallax. Parallax: many agents, many branches, one answer.'),
 ]
 
 VF_FIT = f"scale={W}:{H}:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:color={BG},format=yuv420p"
