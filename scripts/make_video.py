@@ -79,9 +79,20 @@ def duration(path: Path) -> float:
     return float(out.strip() or 0)
 
 
+def _spoken(text: str) -> str:
+    """Natural pacing for `say`: short pauses after sentences and clauses, readable tokens for code-ish words."""
+    import re
+
+    t = text.replace("p50", "p fifty").replace("p95", "p ninety-five").replace("BM25", "B M twenty-five")
+    t = t.replace("SQL", "sequel").replace("N hypotheses", "N hypotheses").replace("1.2 seconds", "one point two seconds")
+    t = re.sub(r"([.!?])\s+", r"\1 [[slnc 260]] ", t)
+    t = re.sub(r"([;:])\s+", r"\1 [[slnc 140]] ", t)
+    return t
+
+
 def tts(text: str, out: Path, voice: str, rate: int) -> None:
     aiff = out.with_suffix(".aiff")
-    run(["say", "-v", voice, "-r", str(rate), "-o", str(aiff), text])
+    run(["say", "-v", voice, "-r", str(rate), "-o", str(aiff), _spoken(text)])
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(aiff), "-ar", "48000", "-ac", "2", "-c:a", "aac", "-b:a", "160k", str(out)])
     aiff.unlink(missing_ok=True)
 
