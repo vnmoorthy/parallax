@@ -74,3 +74,7 @@ clean: ## Remove build artefacts, caches and local run data (keeps .venv / node_
 	rm -rf "$(FRONTEND)/.next" "$(FRONTEND)/out" "$(FRONTEND)/tsconfig.tsbuildinfo"
 	find "$(BACKEND)" -name __pycache__ -type d -prune -exec rm -rf {} + 2>/dev/null || true
 	rm -rf "$(BACKEND)/.pytest_cache" "$(BACKEND)/.ruff_cache" "$(ROOT)/.parallax"
+
+## video: Build the narrated 3-minute demo video (placeholder TTS; see deck/NARRATION.md to use your own voice)
+video:
+	python3 scripts/make_video.py $(if $(FRAMES),--frames $(FRAMES),) $(if $(VOICE_DIR),--voice-dir $(VOICE_DIR),) --out deck/Parallax-demo.mp4
